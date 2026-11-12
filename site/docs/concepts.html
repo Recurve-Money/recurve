@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Core concepts - Recurve Docs</title>
+<meta name="description" content="Four ideas explain most of the protocol: optimistic governance, the float, staked review, and burned slashes.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Core concepts - Recurve Docs">
+<meta property="og:description" content="Four ideas explain most of the protocol: optimistic governance, the float, staked review, and burned slashes.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/concepts">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts" class="on">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Getting started</p>
+    <h1>Core concepts</h1>
+    <p class="subtitle">Four ideas explain most of the protocol: optimistic governance, the float, staked review, and burned slashes.</p>
+
+<h2 id="optimistic">Optimistic governance</h2>
+
+<p>Proposals pass by default. An agent that has to wait for a quorum to say yes cannot trade,
+because by the time the committee answers the edge is gone.</p>
+
+<p>The protection is not an approval gate. It is two things that cost nothing when the agent
+behaves: depositors can veto inside a window, and watchers can block. Both are checked by the
+contract at execution, not by anyone's goodwill.</p>
+
+<h2 id="snapshot">Vote weight is snapshotted</h2>
+
+<p>Weight is read one block before the proposal landed. Nobody buys votes after reading the
+calldata, and nobody who deposits mid-window gets a say on a strategy that was proposed before
+they arrived.</p>
+
+<p>Weight is ERC20Votes weight, which is zero until a holder delegates. The app and the SDK
+delegate to the depositor on every deposit for exactly that reason. The threshold is measured
+against all shares at the snapshot, delegated or not, so undelegated shares make a veto harder,
+not easier.</p>
+
+<h2 id="float">The float and the queue</h2>
+
+<p>A vault holding a live position cannot honestly price an exit. Marking it to an oracle lets an
+informed depositor redeem at a stale number and leaves the loss with everyone who stayed.</p>
+
+<p>So: if the idle balance covers you, you leave immediately. If it does not, you join a queue
+and claim once the balance covers your shares, at the price then. A queued exit shares in the
+gain and eats its part of the loss, exactly as staying would. The queue reserves nothing — a
+strategy can still be funded from the float ahead of a queued request — so a queued exit is a
+promise about price, not about order.</p>
+
+<h2 id="stake">Review backed by stake</h2>
+
+<p>A watcher's opinion is worth what it has behind it. Watchers stake $RECURVE to become
+eligible, cast one final verdict per proposal, and lose the whole stake if a proposal they
+approved is convicted.</p>
+
+<p>The asymmetry is the mechanism. Blocking costs nothing — there is no reward to forfeit.
+Approving a drain costs everything. When a watcher is unsure, blocking is correct. Conviction
+is a call on the registry that only its <code>governor</code> address may make; the current
+<code>RecurveGovernor</code> has no path to it, so as deployed a conviction is an action of
+whoever the registry owner points that address at. See
+<a href="/docs/contracts#limitations">Known limitations</a>.</p>
+
+<h2 id="burn">Why slashed stake burns</h2>
+
+<p>Slashed stake goes to the <code>0xdead</code> burn address rather than to the watchers who
+blocked correctly.</p>
+
+<p>Paying it out sounds fairer and is much worse. If convictions paid, a coordinated majority
+could approve-then-convict a minority and farm them, and every watcher would weigh the payout
+from a conviction against the honesty of its own verdict. Burning removes the payoff, so nobody
+has a reason to engineer a slash.</p>
+
+<h2 id="no-cancel">Nothing is cancelled, only left behind</h2>
+
+<p>There is no cancel on a proposal. A vetoed one is dead; one that enough watchers blocked
+stays <em>Pending</em> on chain forever, because the contract's block is a revert that undoes
+its own state write. The agent simply moves on and proposes again. Readers of the chain — the
+app, the indexer, a watcher — have to treat "pending, window closed, never executed" as the
+abandoned state it is.</p>
+
+<div class="pager">
+<a href="/docs/quickstart"><span class="dir">Previous</span><span class="ttl">Quickstart</span></a>
+<a class="next" href="/docs/vaults"><span class="dir">Next</span><span class="ttl">Vaults</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#optimistic">Optimistic governance</a>
+<a href="#snapshot">Vote weight is snapshotted</a>
+<a href="#float">The float and the queue</a>
+<a href="#stake">Review backed by stake</a>
+<a href="#burn">Why slashed stake burns</a>
+<a href="#no-cancel">Nothing is cancelled, only left behind</a></nav>
+</div>
+
+</body>
+</html>

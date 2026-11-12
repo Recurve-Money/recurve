@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Indexer API - Recurve Docs</title>
+<meta name="description" content="A read-only JSON API over the funds the indexer watches: equity curves, flows, proposals and per-address cost basis. Everything the chain cannot answer cheaply.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Indexer API - Recurve Docs">
+<meta property="og:description" content="A read-only JSON API over the funds the indexer watches: equity curves, flows, proposals and per-address cost basis. Everything the chain cannot answer cheaply.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/api">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api" class="on">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Reference</p>
+    <h1>Indexer API</h1>
+    <p class="subtitle">A read-only JSON API over the funds the indexer watches: equity curves, flows, proposals and per-address cost basis. Everything the chain cannot answer cheaply.</p>
+
+<h2 id="base">Base</h2>
+
+<p>The Recurve Fund's indexer answers at the address below. Another fund runs its own (see
+<a href="#run">Running it</a>).</p>
+
+<pre><code>https://www.recurvemoney.xyz/indexer</code></pre>
+
+<p>GET only, CORS <code>*</code>, weak ETags (send <code>If-None-Match</code> to get a 304).
+Unknown paths and methods answer <code>404 {"error":"not found"}</code>; a crashed route
+<code>500 {"error":"internal"}</code>. The app uses it for the TVL chart and the risk panel and
+nothing else; every other number in the app is read from chain.</p>
+
+<h2 id="conventions">Conventions</h2>
+
+<ul>
+<li>Every amount is a <strong>decimal string</strong> holding a full uint256 — never parse one
+into a JS number. Asset amounts are in the asset's base units (<code>asset_decimals</code>),
+share amounts in share units, <code>share_price</code> is asset base units per 1e18 shares and
+is exactly <code>"1000000000000000000"</code> for an empty vault.</li>
+<li>Block numbers and <code>executable_at</code> (unix seconds) are strings too;
+<code>state</code>, <code>watcher_blocks</code>, <code>log_index</code>,
+<code>asset_decimals</code>, <code>return_24h_pct</code> and the health routes'
+<code>lastOk</code> (unix milliseconds) are numbers.</li>
+<li>Timestamps are ISO-8601 UTC. Addresses and hashes are lowercase.</li>
+<li>Lists for an unknown fund are empty with a 200; only <code>/funds/:slug</code> 404s.</li>
+</ul>
+
+<h2 id="routes">Routes</h2>
+
+<h3 id="funds"><code>GET /funds</code></h3>
+
+<p>Every fund with its latest snapshot, largest TVL first.</p>
+
+<pre><code>{"funds": [{
+  "slug": "main", "name": "Recurve Fund",
+  "vault": "0x…", "governor": "0x…",
+  "asset": "0x…", "asset_symbol": "USDG", "asset_decimals": 6,
+  "total_assets": "2500000000", "float_assets": "250000000", "deployed": "2250000000",
+  "total_supply": "2500000000", "share_price": "1000000000000000000",
+  "updated_at": "2026-09-19T09:30:58.988Z",
+  "share_price_24h": "1000000000000000000",   // newest snapshot at least 24h old, or null
+  "return_24h_pct": 0                          // share_price / share_price_24h − 1, in percent; null without a 24h reference
+}]}</code></pre>
+
+<h3 id="fund"><code>GET /funds/:slug</code></h3>
+
+<p>One fund with the same snapshot columns plus <code>created_at</code> (when the indexer first
+saw it), without the 24h fields. <code>404 {"error":"no such fund"}</code> for an unknown
+slug.</p>
+
+<h3 id="history"><code>GET /funds/:slug/history?range=</code></h3>
+
+<table>
+<thead><tr><th><code>range</code></th><th>Lookback</th><th>Bucket</th></tr></thead>
+<tbody>
+<tr><td><code>24h</code></td><td>24 hours</td><td>10 minutes</td></tr>
+<tr><td><code>7d</code> (default)</td><td>7 days</td><td>1 hour</td></tr>
+<tr><td><code>30d</code></td><td>30 days</td><td>6 hours</td></tr>
+<tr><td><code>all</code></td><td>everything</td><td>1 day</td></tr>
+</tbody>
+</table>
+
+<pre><code>{"range": "7d", "points": [
+  {"t": "2026-09-19T09:00:00.000Z", "total_assets": "5000000000000000", "share_price": "1000000000000000000"},
+  …
+]}</code></pre>
+
+<p>Buckets are aligned to the epoch and carry the <em>maximum</em> of each value inside them.
+Buckets with no snapshot are absent, not zero — a gap means the indexer was down. Any other
+range answers <code>400 {"error":"bad range","allowed":["24h","7d","30d","all"]}</code>.</p>
+
+<h3 id="proposals"><code>GET /funds/:slug/proposals</code>, <code>GET /proposals</code></h3>
+
+<p>Newest first, capped at 100 per fund or 200 across all funds; the cross-fund route adds
+<code>slug</code> and <code>name</code> to each row.</p>
+
+<pre><code>{"proposals": [{
+  "id": "0x…",                       // bytes32 proposal id
+  "governor": "0x…", "vault": "0x…", "target": "0x…",
+  "assets": "5000000000000000",
+  "posted_block": "108364501", "posted_at": "2026-08-27T…Z",
+  "executable_at": "1787943865",     // unix seconds
+  "state": 4,                        // 1 Pending, 2 Vetoed, 3 Blocked, 4 Executed, 5 Settled
+  "veto_weight": "0", "watcher_blocks": 0,
+  "returned": null, "fee": null,     // set by ProposalSettled
+  "updated_at": "…"
+}]}</code></pre>
+
+<p>State follows governor events only; the indexer never reads the contract's state. Because a
+watcher block is a revert on chain, <code>3</code> never actually appears, and a blocked or
+abandoned proposal shows as <code>1</code> with an <code>executable_at</code> in the past
+forever. Calldata is not stored (it is not in any event); read it from the governor.</p>
+
+<h3 id="flows"><code>GET /funds/:slug/flows</code></h3>
+
+<p>The newest 100 vault events, one row each.</p>
+
+<table>
+<thead><tr><th><code>kind</code></th><th>Event</th><th><code>account</code></th><th><code>assets</code> / <code>shares</code></th></tr></thead>
+<tbody>
+<tr><td><code>deposit</code></td><td><code>Deposit</code></td><td>owner</td><td>both</td></tr>
+<tr><td><code>withdraw</code></td><td><code>Withdraw</code> (instant exit)</td><td>owner</td><td>both</td></tr>
+<tr><td><code>queued</code></td><td><code>WithdrawalQueued</code></td><td>owner</td><td>shares only</td></tr>
+<tr><td><code>claimed</code></td><td><code>WithdrawalClaimed</code></td><td>owner</td><td>assets only</td></tr>
+<tr><td><code>fund</code></td><td><code>StrategyFunded</code></td><td>the strategy</td><td>assets only</td></tr>
+<tr><td><code>settle</code></td><td><code>StrategySettled</code></td><td>the vault</td><td>assets returned</td></tr>
+</tbody>
+</table>
+
+<pre><code>{"flows": [{"id": "1", "vault": "0x…", "kind": "deposit", "account": "0x…",
+  "assets": "5000000000000000", "shares": "5000000000000000",
+  "block_number": "108251528", "tx_hash": "0x…", "log_index": 3, "occurred_at": "…"}]}</code></pre>
+
+<h3 id="portfolio"><code>GET /portfolio/:address</code></h3>
+
+<p>Cost basis per fund for one address: deposits minus withdrawals and claims, in asset terms.
+Current value needs a live share balance and price, which belong to a client that already
+holds a chain connection. Malformed addresses answer <code>400 {"error":"not an address"}</code>;
+an address with no history answers an empty <code>positions</code> list.</p>
+
+<pre><code>{"address": "0x…", "positions": [{
+  "slug": "main", "name": "Recurve Fund", "vault": "0x…",
+  "asset_symbol": "USDG", "asset_decimals": 6,
+  "deposited": "2500000000", "withdrawn": "0",
+  "net_deposited": "2500000000",   // can go negative after a profitable exit
+  "events": "1", "last_block": "108251528"
+}]}</code></pre>
+
+<h3 id="health"><code>GET /health</code>, <code>GET /health/indexer</code></h3>
+
+<p><code>/health</code> pings the database and stays 200 while the indexer is merely behind, so
+a long first backfill does not fail a deploy. <code>/health/indexer</code> answers 503 once a
+loop that has succeeded before goes five poll intervals (60 seconds by default) without another
+success. A first backfill shows <code>lastOk: 0</code>, <code>cursor: null</code>,
+<code>stale: false</code>, and has thirty minutes to finish its first poll before that turns
+stale too, so a loop that fails from the start does not read as healthy. An empty
+<code>VAULTS</code> is never stale: there is nothing to index. A malformed one is stale at once,
+with an <code>error</code> field saying so:</p>
+
+<pre><code>{"ok": true, "lastOk": 1758274258988, "cursor": "108451200", "stale": false}</code></pre>
+
+<h2 id="freshness">Freshness</h2>
+
+<p>The indexer polls every 12 seconds and trails the head by two blocks. Timer snapshots of
+every fund land roughly once a minute while the loop is healthy (never more often than every
+60 seconds, and not at all while it is backing off from a failure), and the fund whose vault
+emitted a <code>StrategyFunded</code> or <code>StrategySettled</code> gets an extra snapshot
+pinned to that event's block, so the step when capital leaves and the jump when it comes back
+sit on the curve at the right block rather than up to a minute late. History starts when the indexer started watching a fund; there is no reconstruction of
+the past, because public RPCs do not serve historical state.</p>
+
+<h2 id="run">Running it</h2>
+
+<pre><code>git clone https://github.com/Recurve-Money/recurve && cd recurve/api && npm install
+cp .env.example .env    # DATABASE_URL, CHAIN_ID, VAULTS, DEPLOY_BLOCK
+npm run dev</code></pre>
+
+<table>
+<thead><tr><th>Variable</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>DATABASE_URL</code></td><td>Postgres. Tables are created on boot</td></tr>
+<tr><td><code>CHAIN_ID</code></td><td><code>4663</code>, the default; <code>RPC_URL</code> overrides the endpoint</td></tr>
+<tr><td><code>VAULTS</code></td><td><code>slug:vault:governor:name</code>, comma separated. A malformed entry stops the indexer while the API stays up</td></tr>
+<tr><td><code>DEPLOY_BLOCK</code></td><td>The last block treated as already indexed when no cursor row exists yet; the first scan starts at <code>DEPLOY_BLOCK + 1</code>, so set it to the block <em>before</em> the deploy</td></tr>
+<tr><td><code>LOG_CHUNK</code>, <code>POLL_MS</code></td><td>Blocks per <code>eth_getLogs</code> (at most 100,000 on the Robinhood Chain RPC) and the poll interval</td></tr>
+<tr><td><code>CORS_ORIGIN</code>, <code>PORT</code></td><td>Optional</td></tr>
+</tbody>
+</table>
+
+<p>The cursor is global: a fund added later is indexed from the current head, not backfilled.
+Every insert is idempotent — flows on <code>(tx_hash, log_index)</code>, snapshots on
+<code>(vault, block_number)</code>, proposals on their id, with state updates replayed in log
+order — so rewinding the cursor row by hand and restarting is safe.</p>
+
+<div class="pager">
+<a href="/docs/sdk"><span class="dir">Previous</span><span class="ttl">SDK reference</span></a>
+<a class="next" href="/docs/contracts"><span class="dir">Next</span><span class="ttl">Contracts</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#base">Base</a>
+<a href="#conventions">Conventions</a>
+<a href="#routes">Routes</a>
+<a href="#funds" class="sub">GET /funds</a>
+<a href="#fund" class="sub">GET /funds/:slug</a>
+<a href="#history" class="sub">GET /funds/:slug/history?range=</a>
+<a href="#proposals" class="sub">GET /funds/:slug/proposals, GET /proposals</a>
+<a href="#flows" class="sub">GET /funds/:slug/flows</a>
+<a href="#portfolio" class="sub">GET /portfolio/:address</a>
+<a href="#health" class="sub">GET /health, GET /health/indexer</a>
+<a href="#freshness">Freshness</a>
+<a href="#run">Running it</a></nav>
+</div>
+
+</body>
+</html>

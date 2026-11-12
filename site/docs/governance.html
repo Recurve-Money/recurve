@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Governance - Recurve Docs</title>
+<meta name="description" content="One governor per vault runs the proposal lifecycle: propose, veto window, watcher review, execute, settle.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Governance - Recurve Docs">
+<meta property="og:description" content="One governor per vault runs the proposal lifecycle: propose, veto window, watcher review, execute, settle.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/governance">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance" class="on">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Protocol</p>
+    <h1>Governance</h1>
+    <p class="subtitle">One governor per vault runs the proposal lifecycle: propose, veto window, watcher review, execute, settle.</p>
+
+<h2 id="one-per-vault">One governor per vault</h2>
+
+<p>Governors are never shared. A shared governor would let a large holder in one fund influence
+the schedule of another. The governor's parameters are set in its constructor and have no
+setters: <code>vetoWindow</code>, <code>vetoThresholdBps</code>,
+<code>watcherBlockThreshold</code>, <code>performanceFeeBps</code>, <code>feeRecipient</code>.
+The only mutable thing on a governor is its agent set.</p>
+
+<table>
+<thead><tr><th>Parameter</th><th>Deployed</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>vetoWindow</code></td><td>24 hours</td><td>How long depositors have to object, in seconds</td></tr>
+<tr><td><code>vetoThresholdBps</code></td><td>2000 (20%)</td><td>Share of supply at the snapshot that kills a proposal, reached at <em>or above</em></td></tr>
+<tr><td><code>watcherBlockThreshold</code></td><td>2</td><td>Block verdicts at which <code>execute</code> refuses</td></tr>
+<tr><td><code>performanceFeeBps</code></td><td>500 (5%)</td><td>Fee on profit at settle, see <a href="/docs/fees">Fees</a></td></tr>
+<tr><td><code>feeRecipient</code></td><td>the treasury</td><td>Where the fee goes; the zero address means "compute, never transfer"</td></tr>
+</tbody>
+</table>
+
+<p>Values are what <code>script/DeployMainnet.s.sol</code> passes to the constructor.</p>
+
+<h2 id="states">Proposal states</h2>
+
+<pre><code>enum State { None, Pending, Vetoed, Blocked, Executed, Settled }   // 0..5</code></pre>
+
+<table>
+<thead><tr><th>Transition</th><th>How</th></tr></thead>
+<tbody>
+<tr><td>None → Pending</td><td><code>propose</code></td></tr>
+<tr><td>Pending → Vetoed</td><td><code>veto</code> reaches the threshold. Terminal.</td></tr>
+<tr><td>Pending → Executed</td><td><code>execute</code> after the window, with fewer blocks than the threshold</td></tr>
+<tr><td>Executed → Settled</td><td><code>settle</code>. Terminal.</td></tr>
+<tr><td>Pending → Pending</td><td><code>execute</code> with enough blocks writes <code>Blocked</code>, emits, then reverts with <code>WatchersBlocked</code> — which undoes the write. The proposal stays Pending forever.</td></tr>
+</tbody>
+</table>
+
+<p><code>Blocked</code> is in the enum but never persists. There is no cancel and no expiry. A
+Pending proposal whose window has closed and that will never execute — blocked, or with a
+price floor the market moved past — is simply left there; anyone reading the chain has to
+derive "abandoned" from <em>Pending + window closed + not executed</em>. <code>stateOf(id)</code>
+returns the state; <code>executableAt(id)</code> returns <code>postedAt + vetoWindow</code>.</p>
+
+<h2 id="propose">Propose</h2>
+
+<pre><code>propose(address target, uint256 assets, bytes callData) -> bytes32   // agents only</code></pre>
+
+<p>Calldata is committed in full before anyone decides. What watchers simulate is what will run.
+The id is <code>keccak256(target, assets, callData, block.timestamp, governor)</code>, so read it
+from the <code>ProposalPosted(id, target, assets, executableAt)</code> event rather than a
+simulation. Two identical proposals in the same second get the same id and the second
+overwrites the first; the SDK and the runner never post twice in a second, but a custom agent
+should not either.</p>
+
+<p>Nothing is validated at propose time: not that the target has code, not that
+<code>assets</code> fits the float, not the calldata. An oversized <code>assets</code> surfaces
+at <code>execute</code> as <code>FloatTooLow</code> and a failing call as
+<code>ExecutionFailed</code>; a target with no code never surfaces at all — the call succeeds
+and the proposal executes silently. A proposal with <code>assets == 0</code> is a pure call, which is how
+<code>sell</code> and <code>returnToVault</code> on a <a href="/docs/strategies">strategy</a> are
+posted; one with empty calldata just funds the target.</p>
+
+<h3 id="agents">Agents and agentAdmin</h3>
+
+<p>Agents are a set, not a single address. A fund often wants a signal agent, an execution
+agent, and a fallback, and forcing them to share one key means a compromise of any is a
+compromise of all. <code>isAgent(address)</code> gates <code>propose</code>,
+<code>execute</code> and <code>settle</code> — any agent can execute or settle any agent's
+proposal. <code>allAgents()</code> and <code>agentCount()</code> enumerate the set.</p>
+
+<pre><code>addAgent(address agent)       // onlyAgentAdmin, reverts AlreadyAgent
+removeAgent(address agent)    // onlyAgentAdmin, reverts NotAnAgent
+setAgentAdmin(address admin)  // onlyAgentAdmin</code></pre>
+
+<p>The constructor's <code>agent_</code> becomes both the first agent and the
+<code>agentAdmin</code>. Each change emits <code>AgentAdded</code>, <code>AgentRemoved</code> or
+<code>AgentAdminUpdated</code>. Removing an agent does not cancel its pending proposals: they
+stay live, still go through the window and review, and any remaining agent can execute them.
+Anything else would hand the admin a silent veto that bypasses the depositor vote.</p>
+
+<div class="note warn">
+  <span class="tag">Handle with care</span>
+  <p>None of the admin calls check for the zero address. <code>setAgentAdmin(0)</code> freezes
+  the agent set forever, and <code>removeAgent</code> will happily remove the last agent, after
+  which nothing can be proposed, executed or settled on that vault until the admin adds one
+  back.</p>
+</div>
+
+<h2 id="veto">Veto</h2>
+
+<pre><code>veto(bytes32 proposalId)   // anyone with weight at the snapshot</code></pre>
+
+<p>A holder votes against inside the window, weighted by <code>getPastVotes</code> one block
+before the proposal was posted — zero unless they had delegated by then. One veto per address.
+When the gathered weight reaches <code>vetoThresholdBps</code> of
+<code>getPastTotalSupply(snapshot)</code> — all shares, delegated or not — the proposal moves to
+<code>Vetoed</code> and can never execute. Reverts: <code>UnknownProposal</code>,
+<code>WrongState</code> (not Pending), <code>VetoWindowClosed</code>, <code>AlreadyVetoed</code>,
+<code>NoVotingWeight</code>. There is no vote in favour and no un-veto.</p>
+
+<h2 id="execute">Execute</h2>
+
+<pre><code>execute(bytes32 proposalId)   // agents only</code></pre>
+
+<p>After the window closes an agent calls <code>execute</code>. In order, it reverts with
+<code>UnknownProposal</code>, <code>WrongState</code> if the proposal is not Pending,
+<code>VetoWindowOpen</code> if early, and <code>WatchersBlocked</code> if
+<code>blockCount</code> on the registry has reached the threshold. Then it marks the proposal
+Executed, moves <code>assets</code> out through <code>vault.fundStrategy</code> (which can revert
+<code>FloatTooLow</code>), and if there is calldata makes a plain <code>call</code> to the target
+with the governor as <code>msg.sender</code>, reverting <code>ExecutionFailed</code> if the call
+does. A call to an address with no code succeeds, so a wrong target executes silently.</p>
+
+<h2 id="settle">Settle</h2>
+
+<pre><code>settle(bytes32 proposalId, uint256 returned)   // agents only, proposal must be Executed</code></pre>
+
+<p><code>settle</code> books the result of a funded proposal: it marks it Settled, computes the
+fee on <code>returned − assets</code> if positive, calls <code>vault.settleStrategy(returned)</code>
+which zeroes <code>deployedAssets</code>, pulls the fee from the calling agent's own wallet to
+<code>feeRecipient</code>, and emits <code>ProposalSettled(id, returned, fee)</code>.
+<code>returned</code> is the agent's report — the contract checks it against nothing — and the
+assets themselves come back through the strategy's <code>returnToVault</code>, before this
+call. Details on the fee are under <a href="/docs/fees">Fees</a>.</p>
+
+<p>Because <code>deployedAssets</code> is one number, one settle per deployment is the rule:
+fund once, unwind, return, settle the funding proposal. Settling a zero-asset follow-up
+proposal instead is allowed while something is deployed and zeroes the whole balance for it.
+Settling with nothing deployed reverts <code>NothingToSettle</code>.</p>
+
+<div class="note warn">
+  <span class="tag">For agents</span>
+  <p>Settle in the round after the return lands. Between the two, the share price is inflated
+  (see <a href="/docs/vaults#accounting">Accounting</a>) and every exit in that window is priced
+  wrong.</p>
+</div>
+
+<div class="pager">
+<a href="/docs/vaults"><span class="dir">Previous</span><span class="ttl">Vaults</span></a>
+<a class="next" href="/docs/watchers"><span class="dir">Next</span><span class="ttl">Watchers</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#one-per-vault">One governor per vault</a>
+<a href="#states">Proposal states</a>
+<a href="#propose">Propose</a>
+<a href="#agents" class="sub">Agents and agentAdmin</a>
+<a href="#veto">Veto</a>
+<a href="#execute">Execute</a>
+<a href="#settle">Settle</a></nav>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent skill - Recurve Docs</title>
+<meta name="description" content="Drop-in instructions that teach an LLM agent to operate a fund through the SDK. Works with any harness.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Agent skill - Recurve Docs">
+<meta property="og:description" content="Drop-in instructions that teach an LLM agent to operate a fund through the SDK. Works with any harness.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/agent-skill">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill" class="on">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Operating a fund</p>
+    <h1>Agent skill</h1>
+    <p class="subtitle">Drop-in instructions that teach an LLM agent to operate a fund through the SDK. Works with any harness.</p>
+
+<p>The skill is a markdown file the harness reads as context; the agent then calls
+<code>@recurvemoney/sdk</code> underneath. Nothing in it is mechanically enforced — it is the
+rules, the loop and the reverts, written for a model. For an agent that runs unattended, use
+the <a href="/docs/runner">runner</a>, which is the same loop as a tested process.</p>
+
+<h2 id="install">Install</h2>
+
+<p><strong>Claude Code</strong></p>
+<pre><code>git clone https://github.com/Recurve-Money/recurve-skill
+cp -r recurve-skill/skills/recurve ~/.claude/skills/</code></pre>
+
+<p><strong>Hermes</strong></p>
+<pre><code>hermes plugins install Recurve-Money/recurve-skill</code></pre>
+
+<p><strong>Anything else</strong> reads the raw file at
+<code>recurvemoney.xyz/skill.md</code>. The project the agent works in needs the SDK:</p>
+
+<pre><code>npm install @recurvemoney/sdk viem</code></pre>
+
+<h2 id="env">Environment</h2>
+
+<p>These are read by the harness, not the SDK — the SDK takes addresses through its config
+and reads no environment.</p>
+
+<pre><code># Robinhood Chain (chain id 4663)
+RECURVE_RPC_URL=https://rpc.mainnet.chain.robinhood.com
+RECURVE_VAULT=0x...
+RECURVE_GOVERNOR=0x...
+RECURVE_REGISTRY=0x...
+PRIVATE_KEY=0x...</code></pre>
+
+<p>Every address is under <a href="/docs/contracts#addresses">Contracts</a>.</p>
+
+<h2 id="loop">The loop</h2>
+
+<pre><code>const snap = await recurve.vault.snapshot();
+if (snap.float > 0n) {
+  const id = await recurve.agent.propose(strategy, snap.float, callData);   // id from the event
+  // ... wait ...
+  const wait = await recurve.agent.secondsUntilExecutable(id);
+  const p = await recurve.agent.proposal(id);
+  if (wait === 0 && p.state === ProposalState.Pending) {
+    if ((await recurve.watcher.blockCount(id)) < threshold) await recurve.agent.execute(id);
+  }
+  // ... unwind through the strategy, then ...
+  await recurve.agent.settle(id, returned);
+}</code></pre>
+
+<p>Read the id off <code>propose</code>'s return value: it comes from the
+<code>ProposalPosted</code> event, not a simulation, because the id hashes the block timestamp.
+The full method list is on the <a href="/docs/sdk">SDK reference</a>.</p>
+
+<h2 id="rules">The rules it gives the model</h2>
+
+<ul>
+<li>Never propose a call the agent has not simulated</li>
+<li>Never propose against a target it cannot name in a sentence</li>
+<li>Do not repost a vetoed strategy under a new id</li>
+<li>Settle promptly, because the share price is wrong until you do</li>
+<li>Report losses at the real number — <code>returned</code> is unverified, and the record is public</li>
+</ul>
+
+<p>A vetoed proposal is the system working, not an obstacle. Reposting the same calldata gets a
+fresh id (the timestamp differs), and watchers read that as a governance attack.</p>
+
+<h2 id="reverts">Reverts it will meet</h2>
+
+<table>
+<thead><tr><th>Revert</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>OnlyAgent</code></td><td>This key is not an agent on the governor. Ask the agentAdmin to add it.</td></tr>
+<tr><td><code>VetoWindowOpen</code></td><td>Too early. <code>secondsUntilExecutable</code> says how long.</td></tr>
+<tr><td><code>WatchersBlocked</code></td><td>Enough watchers blocked it. The proposal stays Pending forever; move on.</td></tr>
+<tr><td><code>WrongState</code></td><td>Not Pending (for execute) or not Executed (for settle).</td></tr>
+<tr><td><code>FloatTooLow</code></td><td>The proposal moves more than the vault holds idle.</td></tr>
+<tr><td><code>ExecutionFailed</code></td><td>The strategy call reverted — usually a floor the market moved past.</td></tr>
+<tr><td><code>ERC20InsufficientAllowance</code> at settle</td><td>Approve the governor for the fee in the vault's asset from the agent's wallet.</td></tr>
+</tbody>
+</table>
+
+<div class="pager">
+<a href="/docs/runner"><span class="dir">Previous</span><span class="ttl">Running the agent</span></a>
+<a class="next" href="/docs/watcher-skill"><span class="dir">Next</span><span class="ttl">Watcher skill</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#install">Install</a>
+<a href="#env">Environment</a>
+<a href="#loop">The loop</a>
+<a href="#rules">The rules it gives the model</a>
+<a href="#reverts">Reverts it will meet</a></nav>
+</div>
+
+</body>
+</html>

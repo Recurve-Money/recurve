@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin - Recurve</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* ---------------------------------------------------------------- admin */
+.adm{max-width:640px;margin:0 auto;padding:40px 16px 96px}
+.adm h1{font-size:34px;font-weight:400;letter-spacing:-0.025em}
+.adm h2{font-size:19px;font-weight:500;letter-spacing:-0.01em}
+.adm .intro{color:var(--muted);font-size:16px;line-height:1.5;margin-top:10px}
+.adm-tag{font-size:13px;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:4px 10px}
+
+.card{border:1px solid var(--rule);border-radius:18px;padding:24px;margin-top:20px;background:var(--canvas)}
+.card > * + *{margin-top:14px}
+
+.adm label{display:block;font-size:14px;color:var(--muted)}
+.adm input[type=password],.adm input[type=text]{
+  display:block;width:100%;margin-top:6px;
+  border:1px solid var(--rule);border-radius:12px;padding:12px 14px;
+  font:inherit;font-size:15px;color:var(--ink);background:#fff;
+}
+.adm input.mono{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:14px}
+.adm .check{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px;line-height:1.4;cursor:pointer}
+.adm .check input{margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--ink)}
+.adm input:focus-visible,.adm button:focus-visible,.adm a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.adm button{font-family:inherit}
+.adm button[disabled]{opacity:.45;cursor:default}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.msg{font-size:14px;line-height:1.45;min-height:1em}
+.msg.err{color:#8C2F1C}
+.msg.ok{color:#0F7A55}
+.msg:empty{display:none}
+
+.env{font-size:14px;line-height:1.45;border-radius:12px;padding:12px 14px;margin-top:24px;background:var(--shade)}
+.env.prod{background:#FBEAE5;color:#8C2F1C}
+
+.addr{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:14px;overflow-wrap:anywhere}
+.badge{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.04em;border-radius:999px;padding:3px 9px;vertical-align:2px;margin-left:6px}
+.badge.test{background:#FBEAE5;color:#8C2F1C}
+.badge.live{background:var(--mint);color:var(--mint-ink)}
+.meta{color:var(--muted);font-size:14px;line-height:1.5}
+#now > * + *{margin-top:8px}
+.links{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}
+.links a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(10,10,10,.28)}
+
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:14px}
+.facts dt{color:var(--muted)}
+.facts dd{overflow-wrap:anywhere}
+.warn{font-size:14px;line-height:1.45;background:var(--shade);border-radius:12px;padding:10px 12px}
+
+.hist{font-size:14px;line-height:1.5;list-style:none}
+.hist li + li{margin-top:8px}
+.hist .when{color:var(--muted)}
+
+.adm input:disabled{background:var(--shade);color:var(--muted)}
+.wallet-row{align-items:center}
+.run{list-style:none;font-size:15px}
+.run li{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-top:1px solid var(--rule)}
+.run li:first-child{border-top:0}
+.run .st{flex:none;width:16px;color:var(--muted)}
+.run li.done .st{color:#0F7A55}
+.run li.wallet,.run li.mining{font-weight:500}
+.run .note{margin-left:auto;color:var(--muted);font-size:13px;font-weight:400;white-space:nowrap}
+.run a.note{text-decoration:underline;text-underline-offset:3px}
+.run:empty{display:none}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fields .wide{grid-column:1 / -1}
+.hint{font-size:13px;color:var(--muted);line-height:1.45;margin-top:6px}
+@media (max-width:520px){.fields{grid-template-columns:1fr}}
+.plain{background:none;border:0;padding:0;font:inherit;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:4px;cursor:pointer;margin-top:24px}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/" aria-label="Recurve">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="adm-tag">Admin</span>
+  </div>
+</header>
+
+<main class="adm">
+  <h1>Admin</h1>
+  <p class="intro">Launch the fund from a wallet, and publish $RECURVE when it is ready.</p>
+
+  <form class="card" id="login" autocomplete="on">
+    <div>
+      <label for="pw">Password</label>
+      <input type="password" id="pw" name="password" autocomplete="current-password" required>
+    </div>
+    <div class="actions"><button class="btn btn-dark btn-sm" type="submit" id="loginBtn">Sign in</button></div>
+    <p class="msg err" id="loginMsg" role="alert"></p>
+  </form>
+
+  <div id="panel" hidden>
+    <p class="env" id="env"></p>
+
+    <section class="card" aria-labelledby="nowTitle">
+      <h2 id="nowTitle">$RECURVE on the site</h2>
+      <div id="now"></div>
+    </section>
+
+    <form class="card" id="setForm" aria-labelledby="setTitle">
+      <h2 id="setTitle">Publish an address</h2>
+      <div>
+        <label for="addr">Contract address on Robinhood Chain</label>
+        <input type="text" class="mono" id="addr" placeholder="0x..." spellcheck="false" autocomplete="off" autocapitalize="off">
+      </div>
+      <label class="check"><input type="checkbox" id="isTest" checked> Test token. The site warns visitors that it is not $RECURVE.</label>
+      <div class="actions"><button class="btn btn-light btn-sm" type="submit" id="checkBtn">Check on chain</button></div>
+      <div id="preview" hidden>
+        <dl class="facts" id="facts"></dl>
+        <p class="warn" id="previewWarn" hidden></p>
+        <div class="actions" style="margin-top:16px"><button class="btn btn-dark btn-sm" type="button" id="publishBtn">Publish</button></div>
+      </div>
+      <p class="msg" id="setMsg" role="status"></p>
+    </form>
+
+    <section class="card" id="launch" aria-labelledby="launchTitle">
+      <h2 id="launchTitle">Launch the fund</h2>
+      <p class="meta">Real transactions on Robinhood Chain mainnet, about ten wallet confirmations in a row. $RECURVE can wait: the fund opens without it and you attach it here afterwards. If anything stops, Continue picks up where it left off and nothing is deployed twice.</p>
+
+      <div class="actions wallet-row">
+        <button class="btn btn-dark btn-sm" type="button" data-wallet-connect>Connect wallet</button>
+        <span class="meta" id="walletInfo"></span>
+      </div>
+      <p class="msg err" id="walletNote" hidden></p>
+
+      <form id="launchForm">
+        <div class="fields">
+          <div class="wide">
+            <label for="treasury">Treasury, your Safe on Robinhood Chain</label>
+            <input type="text" class="mono" id="treasury" placeholder="0x..." spellcheck="false" autocomplete="off" autocapitalize="off">
+            <p class="hint">Create it first at <a href="https://app.safe.global" target="_blank" rel="noopener">app.safe.global</a>. It gets the performance fee, the agent list and, once $RECURVE is attached, the watcher registry.</p>
+          </div>
+          <div class="wide">
+            <label for="agent">Agent, the runner's address</label>
+            <input type="text" class="mono" id="agent" placeholder="0x..." spellcheck="false" autocomplete="off" autocapitalize="off">
+          </div>
+          <div>
+            <label for="depositCap">Deposit cap, USDG</label>
+            <input type="text" inputmode="numeric" id="depositCap" autocomplete="off">
+            <p class="hint">Only this wallet can raise it later, and nothing can lower it.</p>
+          </div>
+          <div id="minStakeField" hidden>
+            <label for="minStake">Minimum watcher stake, $RECURVE</label>
+            <input type="text" inputmode="numeric" id="minStake" autocomplete="off">
+            <p class="hint" id="minStakeHint"></p>
+          </div>
+        </div>
+        <dl class="facts" id="launchFacts" style="margin-top:16px"></dl>
+        <div class="actions" style="margin-top:16px">
+          <button class="btn btn-dark btn-sm" type="submit" id="launchBtn" disabled>Deploy the contracts</button>
+          <button class="plain" type="button" id="startOver" hidden>Start over</button>
+        </div>
+        <p class="hint" id="launchHint">Connect the wallet that holds ETH on Robinhood Chain. The whole launch costs about 0.00015 ETH.</p>
+        <ol class="run" id="launchSteps" style="margin-top:16px"></ol>
+      </form>
+
+      <div id="launchDone" hidden>
+        <p>The fund is live <span class="badge live">LIVE</span></p>
+        <dl class="facts" id="liveFacts" style="margin-top:12px"></dl>
+        <p class="hint">The app already reads these. The docs, the TVL chart and the agent switch on with the next <code>npm run deploy</code>.</p>
+
+        <div id="attach" hidden>
+          <h2 style="margin-top:24px">Attach $RECURVE</h2>
+          <p class="meta" style="margin-top:8px">Until this is done there are no watchers: only the depositors' veto can stop a proposal, and the registry stays with the wallet that deployed it.</p>
+          <p class="hint" id="attachNote"></p>
+          <div class="fields" id="attachStakeField" style="margin-top:12px" hidden>
+            <div>
+              <label for="attachStake">Minimum watcher stake, $RECURVE</label>
+              <input type="text" inputmode="numeric" id="attachStake" autocomplete="off">
+              <p class="hint" id="attachStakeHint"></p>
+            </div>
+          </div>
+          <div class="actions" style="margin-top:12px">
+            <button class="btn btn-dark btn-sm" type="button" id="attachBtn" disabled>Attach $RECURVE</button>
+          </div>
+        </div>
+
+        <h2 style="margin-top:24px">Fund the agent</h2>
+        <p class="meta" id="agentBalances" style="margin-top:8px"></p>
+        <p class="hint">It pays gas in ETH, and the performance fee from its own USDG at each profitable settle.</p>
+        <div class="actions" style="margin-top:12px">
+          <button class="btn btn-light btn-sm" type="button" id="sendEth">Send 0.0001 ETH</button>
+          <button class="btn btn-light btn-sm" type="button" id="sendUsdg">Send 20 USDG</button>
+        </div>
+
+        <h2 style="margin-top:24px">Deposit cap</h2>
+        <p class="meta" id="capNow" style="margin-top:8px"></p>
+        <form id="capForm" class="actions wallet-row" style="margin-top:12px">
+          <input type="text" inputmode="numeric" id="newCap" placeholder="New cap, USDG" aria-label="New cap in USDG" autocomplete="off" style="max-width:200px;margin:0">
+          <button class="btn btn-light btn-sm" type="submit" id="capBtn">Raise it</button>
+        </form>
+        <p class="hint">Sent from the wallet that deployed the vault. It can never go back down.</p>
+      </div>
+
+      <p class="msg" id="launchMsg" role="status"></p>
+    </section>
+
+    <section class="card" aria-labelledby="histTitle">
+      <h2 id="histTitle">History</h2>
+      <ol class="hist" id="history"></ol>
+    </section>
+
+    <button class="plain" type="button" id="signOut">Sign out</button>
+  </div>
+</main>
+
+<script>
+/* The password stays in this tab's memory only and goes with every request:
+   the server checks it each time and counts every wrong one. */
+(function () {
+  "use strict";
+
+  var PONS = "https://www.ponsfamily.com/launchpad/";
+  var SCAN = "https://robinhoodchain.blockscout.com/token/";
+
+  var password = "";
+  var checked = null; // the inspected token the Publish button would publish
+  var env = "local";
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  async function call(action, extra) {
+    var res = await fetch("/api/token", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(Object.assign({action: action, password: password}, extra || {})),
+    });
+    var data = {};
+    try { data = await res.json(); } catch (e) { /* not JSON */ }
+    if (res.status === 401) signOut("Wrong password.");
+    if (!res.ok) throw new Error(data.error || "The server answered " + res.status + ".");
+    return data;
+  }
+
+  function el(tag, attrs, text) {
+    var n = document.createElement(tag);
+    for (var k in attrs || {}) n.setAttribute(k, attrs[k]);
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  function when(iso) {
+    var d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleString(undefined, {dateStyle: "medium", timeStyle: "short"});
+  }
+
+  function label(t) {
+    return [t.name, t.symbol && "(" + t.symbol + ")"].filter(Boolean).join(" ") || "Unnamed token";
+  }
+
+  // ---------------------------------------------------------------- render
+
+  function renderEnv() {
+    var box = $("env");
+    box.className = "env" + (env === "production" ? " prod" : "");
+    box.textContent = env === "production"
+      ? "Production. What you publish here is public on recurvemoney.xyz within 30 seconds."
+      : "Local dev server. Addresses stay on this machine until npm run deploy, but a launch from here is real: it goes to mainnet.";
+  }
+
+  function renderNow(t) {
+    var box = $("now");
+    box.textContent = "";
+    if (!t) {
+      box.appendChild(el("p", {class: "meta"}, "Nothing is published. The site says $RECURVE launches soon and shows no address, price or buy link."));
+      return;
+    }
+    var head = el("p", {}, label(t));
+    head.appendChild(el("span", {class: "badge " + (t.test ? "test" : "live")}, t.test ? "TEST" : "LIVE"));
+    box.appendChild(head);
+    box.appendChild(el("p", {class: "addr"}, t.address));
+    box.appendChild(el("p", {class: "meta"}, (t.test
+      ? "Shown with a warning that it is not $RECURVE. "
+      : "Shown as $RECURVE. ") + "Published " + when(t.updatedAt) + "."));
+
+    var links = el("p", {class: "links"});
+    links.appendChild(el("a", {href: "/buy", target: "_blank", rel: "noopener"}, "/buy"));
+    links.appendChild(el("a", {href: "/token", target: "_blank", rel: "noopener"}, "/token"));
+    links.appendChild(el("a", {href: SCAN + t.address, target: "_blank", rel: "noopener"}, "Explorer"));
+    links.appendChild(el("a", {href: PONS + t.address, target: "_blank", rel: "noopener"}, "Pons"));
+    box.appendChild(links);
+
+    var actions = el("div", {class: "actions", style: "margin-top:16px"});
+    var remove = el("button", {class: "btn btn-light btn-sm", type: "button"}, "Take it down");
+    remove.addEventListener("click", takeDown);
+    actions.appendChild(remove);
+    box.appendChild(actions);
+  }
+
+  function renderHistory(rows) {
+    var list = $("history");
+    list.textContent = "";
+    if (!rows || !rows.length) {
+      list.appendChild(el("li", {class: "meta"}, "No changes yet."));
+      return;
+    }
+    rows.forEach(function (r) {
+      var li = el("li");
+      li.appendChild(el("span", {class: "when"}, when(r.at) + " · "));
+      li.appendChild(document.createTextNode(
+        ({publish: "Published ", launch: "Launched ", attach: "Attached ", remove: "Took down "}[r.action] || "") +
+        (r.symbol ? r.symbol + " " : "") + (r.test ? "(test) " : "")));
+      li.appendChild(el("span", {class: "addr"}, r.address));
+      list.appendChild(li);
+    });
+  }
+
+  function render(data) {
+    if (data.env) env = data.env;
+    renderEnv();
+    if ("token" in data) renderNow(data.token);
+    if (data.history) renderHistory(data.history);
+    document.dispatchEvent(new CustomEvent("recurve:admin", {detail: data}));
+  }
+
+  function renderPreview(t) {
+    checked = t;
+    var facts = $("facts");
+    facts.textContent = "";
+    [
+      ["Name", t.name || "none"],
+      ["Symbol", t.symbol || "none"],
+      ["Decimals", t.decimals === null ? "none" : String(t.decimals)],
+      ["Supply", t.totalSupply || "unknown"],
+      ["Pons v2", t.ponsV2 ? "Yes, launched on Pons v2" : "No"],
+    ].forEach(function (row) {
+      facts.appendChild(el("dt", {}, row[0]));
+      facts.appendChild(el("dd", {}, row[1]));
+    });
+
+    var warn = $("previewWarn");
+    var problem = !t.contract
+      ? "No contract at this address on Robinhood Chain mainnet. Check for a typo or a testnet address."
+      : t.decimals === null
+        ? "This contract does not answer decimals(), so it is not an ERC-20 token."
+        : null;
+    var notice = !problem && !t.ponsV2 ? "Not created by the Pons v2 launchpad. Fine for a test; the real $RECURVE should say Yes." : null;
+    warn.hidden = !(problem || notice);
+    warn.textContent = problem || notice || "";
+
+    $("publishBtn").disabled = !!problem;
+    updatePublishLabel();
+    $("preview").hidden = false;
+  }
+
+  function updatePublishLabel() {
+    $("publishBtn").textContent = $("isTest").checked ? "Publish as a test" : "Publish as $RECURVE";
+  }
+
+  function clearPreview() {
+    checked = null;
+    $("preview").hidden = true;
+  }
+
+  function say(id, text, kind) {
+    var m = $(id);
+    m.className = "msg" + (kind ? " " + kind : "");
+    m.textContent = text || "";
+  }
+
+  // ---------------------------------------------------------------- actions
+
+  $("login").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    password = $("pw").value;
+    $("loginBtn").disabled = true;
+    say("loginMsg", "");
+    try {
+      var data = await call("status");
+      $("pw").value = "";
+      $("login").hidden = true;
+      $("panel").hidden = false;
+      render(data);
+      $("addr").focus();
+    } catch (err) {
+      password = "";
+      say("loginMsg", err.message, "err");
+    } finally {
+      $("loginBtn").disabled = false;
+    }
+  });
+
+  $("setForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    clearPreview();
+    say("setMsg", "Reading the contract…");
+    $("checkBtn").disabled = true;
+    try {
+      var data = await call("inspect", {address: $("addr").value});
+      say("setMsg", "");
+      renderPreview(data.token);
+    } catch (err) {
+      say("setMsg", err.message, "err");
+    } finally {
+      $("checkBtn").disabled = false;
+    }
+  });
+
+  $("publishBtn").addEventListener("click", async function () {
+    if (!checked) return;
+    var test = $("isTest").checked;
+    if (!test && !confirm("Publish " + checked.address + " as the real $RECURVE? Visitors will be told to buy it.")) return;
+    $("publishBtn").disabled = true;
+    try {
+      var data = await call("publish", {address: checked.address, test: test});
+      render(data);
+      clearPreview();
+      $("addr").value = "";
+      say("setMsg", env === "production" ? "Published. Visitors see it within 30 seconds." : "Published.", "ok");
+    } catch (err) {
+      say("setMsg", err.message, "err");
+    } finally {
+      $("publishBtn").disabled = false;
+    }
+  });
+
+  async function takeDown() {
+    if (!confirm("Take the address down? The site stops showing it and its price.")) return;
+    try {
+      render(await call("remove"));
+      say("setMsg", "Taken down.", "ok");
+    } catch (err) {
+      say("setMsg", err.message, "err");
+    }
+  }
+
+  // Any edit after a check means the preview no longer describes the input.
+  $("addr").addEventListener("input", clearPreview);
+  $("isTest").addEventListener("change", updatePublishLabel);
+
+  window.RecurveAdmin = {call: call, render: render};
+
+  function signOut(message) {
+    password = "";
+    clearPreview();
+    $("panel").hidden = true;
+    $("login").hidden = false;
+    say("loginMsg", message || "", message ? "err" : "");
+    $("pw").focus();
+  }
+  $("signOut").addEventListener("click", function () { signOut(); });
+})();
+</script>
+<script src="/wallet.js"></script>
+<script src="/launch.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using the app - Recurve Docs</title>
+<meta name="description" content="The app at recurvemoney.xyz/app reads every fund straight from chain. Deposit, exit, veto, stake and cast verdicts from a wallet.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Using the app - Recurve Docs">
+<meta property="og:description" content="The app at recurvemoney.xyz/app reads every fund straight from chain. Deposit, exit, veto, stake and cast verdicts from a wallet.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/app">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app" class="on">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Getting started</p>
+    <h1>Using the app</h1>
+    <p class="subtitle">The app at recurvemoney.xyz/app reads every fund straight from chain. Deposit, exit, veto, stake and cast verdicts from a wallet.</p>
+
+<h2 id="connect">Connecting</h2>
+
+<p>Injected wallets (MetaMask and the like) always work. WalletConnect's QR flow works when the
+deployment carries a project id; without one it is simply absent. The app is pinned to Robinhood
+Chain and asks the wallet to switch if it is elsewhere.</p>
+
+<p>Every number on screen is read from the contracts, most of them in one multicall per fund so
+they all describe the same block. Only the equity chart and the risk panel come from the
+<a href="/docs/api">indexer</a>; if it is down those two say so and the rest of the app carries on.
+A dead RPC shows as an <em>RPC unreachable</em> chip in the header.</p>
+
+<h2 id="funds">Funds</h2>
+
+<p>The landing tab lists every fund the build knows about with its TVL, float, deployed
+capital and share price. A dash means the read failed, not that the vault is empty. Open a fund
+for its detail view: the TVL chart with 24h / 7d / 30d / all ranges, derived risk figures
+(total return, max drawdown, days since the high-water mark, all from the share-price series),
+the proposal list, and the governor's parameters — voting window, depositor veto threshold,
+blocks to stop, performance fee — read live.</p>
+
+<h2 id="deposit">Deposit</h2>
+
+<p>Type an amount in the vault's asset, or <em>Max</em> for your whole balance. The first
+deposit is three transactions and two clicks:</p>
+
+<ol>
+<li><strong>Approve.</strong> If the vault's allowance is short the button reads
+<em>Approve &lt;asset&gt;</em> and sends an unlimited approval, then asks you to submit again.</li>
+<li><strong>Deposit</strong>, then <strong>delegate</strong> to yourself, back to back. Voting
+weight is zero until delegated, so the app never leaves you holding shares that cannot veto.</li>
+</ol>
+
+<p>The vault carries a <a href="/docs/vaults#deposit-cap">deposit cap</a> of 10,000 USDG; the app does
+not display it. Shares carry the asset's decimals, so the number you see under <em>Shares</em> is in the same
+scale as the asset.</p>
+
+<h2 id="redeem">Exit</h2>
+
+<p>Switch to <em>Redeem</em> and enter shares. Before you submit, the panel warns when the
+float does not cover the exit: <em>The exit will queue and settle at the realized price.</em>
+That is what happens on chain — <code>requestRedeem</code> pays instantly when the idle balance
+covers it, otherwise it escrows your shares and gives you a queue position. Queued requests
+appear below the form as <em>Request #n</em> with a <em>Claim</em> button; a claim goes through
+once the vault's idle balance covers the request, priced at that moment, and reverts with
+<em>Not claimable yet</em> until then.</p>
+
+<div class="note">
+  <span class="tag">Note</span>
+  <p>Escrowed shares carry no voting weight while they wait, and the claim has to come from the
+  address that made the request. There is no cancel: a queued request either clears or waits.</p>
+</div>
+
+<h2 id="veto">Veto</h2>
+
+<p>A proposal row shows its target, the assets it moves, the size of its calldata, how many
+watchers have blocked it, and the veto weight gathered so far as a share of supply at the
+snapshot. While the window is open and you have weight at that snapshot, the row offers
+<em>Veto with N votes</em>. Weight is what you had delegated one block before the proposal was
+posted; if the row says <em>No weight at this snapshot</em>, delegate now and it counts from
+the next proposal. Vetoes are one per address and cannot be taken back.</p>
+
+<p>A proposal stays <em>Pending</em> with <em>Window closed. Waiting on the agent to execute</em>
+in two very different situations: the agent has not executed yet, or it never can — enough
+watchers blocked it, or its price floor is stale. The chain does not distinguish them; see
+<a href="/docs/governance#states">proposal states</a>.</p>
+
+<h2 id="watcher">Watcher</h2>
+
+<p>The <em>Watcher</em> tab is the registry from a staker's side. It shows your stake, the
+minimum, whether you are active, and your RECURVE balance.</p>
+
+<ul>
+<li><strong>Stake</strong> — approve RECURVE to the registry (unlimited, once), then stake.
+You are active from the moment your stake reaches the minimum.</li>
+<li><strong>Cast a verdict</strong> — pick a proposal from the list (every fund's proposals,
+newest first) or paste a 32-byte id, then <em>Block</em> or <em>Approve</em>. A verdict is
+final. Simulate the calldata first; approving a call that drains a vault is what a conviction
+slashes.</li>
+<li><strong>Request unstake</strong> — starts the delay on your whole stake. You stay active and
+slashable until <em>Withdraw</em> completes after the delay.</li>
+</ul>
+
+<h2 id="errors">When something reverts</h2>
+
+<p>Every transaction is simulated before the wallet opens, so a revert arrives as a sentence
+rather than a wallet's gas-estimation failure: <em>The vault cannot release that much right
+now</em>, <em>Still inside the veto window</em>, <em>Stake is under the minimum</em>. The full
+map from contract error to sentence is under <a href="/docs/errors">Errors</a>.</p>
+
+<div class="pager">
+<a href="/docs"><span class="dir">Previous</span><span class="ttl">Introduction</span></a>
+<a class="next" href="/docs/quickstart"><span class="dir">Next</span><span class="ttl">Quickstart</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#connect">Connecting</a>
+<a href="#funds">Funds</a>
+<a href="#deposit">Deposit</a>
+<a href="#redeem">Exit</a>
+<a href="#veto">Veto</a>
+<a href="#watcher">Watcher</a>
+<a href="#errors">When something reverts</a></nav>
+</div>
+
+</body>
+</html>

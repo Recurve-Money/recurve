@@ -1,0 +1,24 @@
+{
+  "name": "recurve",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Recurve monorepo: marketing site, dApp, docs, indexer API, fund runner.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:runner": "npm --prefix runner run dev",
+    "build": "npm run build:site && npm run build:api",
+    "build:site": "python3 site/build/zh.py && npm run build:docs && npm run build:app",
+    "build:app": "npm --prefix app run build",
+    "build:api": "npm --prefix api run build",
+    "build:contracts": "cd protocol && forge build && cd .. && node scripts/export-contracts.mjs",
+    "build:docs": "python3 docs/build/pages.py",
+    "deploy": "bash deploy/deploy.sh",
+    "rehearse:launch": "node scripts/launch.rehearsal.mjs",
+    "typecheck": "npm --prefix app run typecheck && npm --prefix api run typecheck && npm --prefix runner run typecheck",
+    "test": "npm --prefix app test && npm --prefix api test && npm --prefix runner test && python3 docs/build/test_deployments.py && node --test scripts/serve-site.test.mjs scripts/launch.test.mjs",
+    "install:all": "npm --prefix app install && npm --prefix api install && npm --prefix runner install"
+  }
+}

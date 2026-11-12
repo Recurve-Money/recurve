@@ -1,0 +1,22 @@
+.vercel
+node_modules/
+dist/
+__pycache__/
+*.tsbuildinfo
+.env
+.env.local
+.env.development
+.DS_Store
+.backups/
+.dev/
+.claude/
+
+# Repositories of their own, checked out here (README).
+/protocol/
+/runner/
+/solana/
+
+# The server: it stays with whoever operates it.
+/deploy/
+
+/specs/

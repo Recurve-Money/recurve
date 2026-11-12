@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Off-chain venues (roadmap) - Recurve Docs</title>
+<meta name="description" content="A sketch for letting an agent trade a perp venue whose order book lives off-chain, without the strategy contract ever holding a hot key to the vault itself.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Off-chain venues (roadmap) - Recurve Docs">
+<meta property="og:description" content="A sketch for letting an agent trade a perp venue whose order book lives off-chain, without the strategy contract ever holding a hot key to the vault itself.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/perp-strategy">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy" class="on">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Roadmap</p>
+    <h1>Off-chain venues (roadmap)</h1>
+    <p class="subtitle">A sketch for letting an agent trade a perp venue whose order book lives off-chain, without the strategy contract ever holding a hot key to the vault itself.</p>
+
+<div class="note warn">
+  <span class="tag">Design sketch — not built</span>
+  <p>No contract exists for this yet. This page describes a direction, not a shipped feature or a
+  commitment to a specific venue or date. Nothing here should be read as a live integration.</p>
+</div>
+
+<h2 id="why">Why an on-chain strategy is not enough</h2>
+
+<p><code>PortfolioStrategy</code> covers venues where a swap settles on-chain in the same
+transaction — the contract can see the fill, so it can also bound the slippage. Order-book
+perps on venues like Lighter do not work that way: matching happens off-chain in the venue's own
+sequencer, and the strategy contract never sees a trade. It cannot cap position size, leverage,
+or trade rate the way it caps a swap.</p>
+
+<p>The custody problem changes shape as a result. On <code>PortfolioStrategy</code> the contract
+is the trader. Here the agent has to be the trader, because the venue speaks to whoever holds the
+account's key — which means the question is no longer "can the contract validate the trade"
+but "what can the key that trades actually do."</p>
+
+<h2 id="boundary">The custody boundary this would need</h2>
+
+<p>The shape most worth building toward: the strategy clone opens and owns the venue account
+itself. It deposits vault capital as margin, then registers a scoped, trade-only key for the
+agent — one that can place and cancel orders and nothing else. It cannot withdraw, cannot
+transfer, cannot register a different key. Every one of those stays authenticated to the clone,
+not the agent.</p>
+
+<table>
+<thead><tr><th>Holds</th><th>Can</th><th>Cannot</th></tr></thead>
+<tbody>
+<tr><td>Agent's key</td><td>Place and cancel orders</td><td>Withdraw, transfer, rotate keys</td></tr>
+<tr><td>Strategy clone</td><td>Cancel orders, force-close, rotate/revoke the key, queue withdrawal</td><td>Skip the vault on the way back — exits only ever land there</td></tr>
+</tbody>
+</table>
+
+<p>That bounds <em>how long</em> capital can be exposed to a bad key — the clone can always
+cancel, close, and pull funds out without the agent's cooperation. It does not bound <em>how
+much</em> a live position can lose while it's open, because nothing on-chain is watching the
+trade happen. The real risk limit is how much a proposal is allowed to deposit in the first
+place, not anything the contract enforces mid-trade.</p>
+
+<h2 id="settlement">Why settlement would have to be async</h2>
+
+<p>Secure withdrawals from an off-chain order book don't clear instantly — they queue and
+mature, sometimes well after the position is flat. A fund running this can't price that position
+for a mid-proposal deposit or redemption the way it prices an on-chain swap; both would have to
+wait behind the same queue the strategy itself is waiting on. That's a real cost to communicate
+to depositors before it ships, not after.</p>
+
+<div class="note">
+  <span class="tag">Note</span>
+  <p>None of this is scheduled. It's here because the gap between "agent trades an AMM" and
+  "agent trades an order book" is a custody-model problem, not a feature-flag, and it's worth
+  thinking through in the open before it's a live contract instead of after.</p>
+</div>
+
+<div class="pager">
+<a href="/docs/deployment"><span class="dir">Previous</span><span class="ttl">Deployment</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#why">Why an on-chain strategy is not enough</a>
+<a href="#boundary">The custody boundary this would need</a>
+<a href="#settlement">Why settlement would have to be async</a></nav>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.development
+*.tsbuildinfo
+.DS_Store
+.vercel
+# the background clip is licensed for the site, not for redistribution (README)
+public/bg/

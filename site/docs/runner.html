@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Running the agent - Recurve Docs</title>
+<meta name="description" content="recurve-runner is the reference agent: one process per fund that proposes a position, executes it once the window closes, unwinds it when the policy says so, and settles.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Running the agent - Recurve Docs">
+<meta property="og:description" content="recurve-runner is the reference agent: one process per fund that proposes a position, executes it once the window closes, unwinds it when the policy says so, and settles.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/runner">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner" class="on">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Operating a fund</p>
+    <h1>Running the agent</h1>
+    <p class="subtitle">recurve-runner is the reference agent: one process per fund that proposes a position, executes it once the window closes, unwinds it when the policy says so, and settles.</p>
+
+<h2 id="what">What it does</h2>
+
+<p>The runner polls the chain every minute, rebuilds the fund's state from it, decides exactly
+one action, and carries it out. It keeps no state of its own — the governor's
+<code>ProposalPosted</code> / <code>ProposalExecuted</code> logs, each proposal's live state,
+the strategy's balances and its <code>Liquidated</code> event are the whole picture — so a
+restart mid-cycle picks up wherever the chain is.</p>
+
+<pre><code>1  propose buy             float -> the leg, held by the strategy
+   hold                    until HOLD_SECONDS, an exit the float
+                           cannot pay, or FORCE_UNWIND
+2  propose sell            the leg -> base asset, in the strategy
+3  propose returnToVault   base asset -> the vault (Liquidated)
+4  settle(id of step 1, amount from Liquidated)</code></pre>
+
+<p>One funding per cycle. Float that arrives mid-cycle stays idle until the cycle settles: the
+governor books one <code>settle</code> per deployment, and a second funding would make its fee
+and PnL accounting wrong. Every step is its own proposal and waits its own veto window, so a
+round trip is at least three days of windows on the scripted parameters, plus however long the
+position is held.</p>
+
+<h2 id="policy">The policy</h2>
+
+<p>Each round the runner reads a <em>view</em> — float, deployed, total assets, what queued
+exits are owed at the current share price, the newest live Pending proposal, the executed
+funding proposal, the strategy's holdings, the returned amount if the return has run — and
+decides:</p>
+
+<ol>
+<li><strong>Paused?</strong> Do nothing.</li>
+<li><strong>A proposal is pending.</strong> Wait while its window is open. Once closed, execute
+it if <code>execute</code> simulates cleanly; otherwise abandon it (below) and move on.</li>
+<li><strong>Nothing deployed.</strong> Deployable = float − queued exits − the reserve
+(<code>RESERVE_BPS</code> of total assets). If that clears <code>MIN_TRADE</code>, propose a buy
+for it; otherwise idle.</li>
+<li><strong>Capital is out</strong> and the strategy holds the leg: sell it if an unwind is
+due — <code>FORCE_UNWIND</code>, queued exits exceed the float, or <code>HOLD_SECONDS</code> have
+passed since the funding executed — otherwise hold.</li>
+<li>The leg is sold and base sits in the strategy: propose <code>returnToVault</code>.</li>
+<li>Everything is back: <code>settle</code> the funding proposal with the amount from
+<code>Liquidated</code>.</li>
+</ol>
+
+<p>The decision layer is a pure function with its own tests; nothing that touches an RPC
+decides anything.</p>
+
+<h2 id="floor">The price floor</h2>
+
+<p>A proposal is quoted when it is posted and executed a day later. The live quote cannot be
+the floor — any move against the fund inside the window would revert the fill — so the calldata
+states <code>quote × (1 − PRICE_TOLERANCE_BPS)</code> as its quote, and the strategy then
+enforces its own <code>maxSlippageBps</code> below that. With the defaults (300 bps tolerance,
+300 bps strategy cap) a buy executes at anything within roughly 6% of the price at proposal
+time. That is the number a watcher sees in the calldata, and the number an operator should set
+deliberately: wider survives a volatile day, narrower gives a sandwich less room. The quote
+comes from Uniswap's <code>QuoterV2</code> on the pool tier the strategy is wired to, read
+from the strategy itself so the two cannot disagree.</p>
+
+<h2 id="abandon">Stuck proposals</h2>
+
+<p>If the market moved past the floor by the time the window closes, or enough watchers
+blocked it, <code>execute</code> reverts. The runner simulates before sending, logs
+<code>ABANDONED</code> once, remembers the id, and proposes again at a fresh quote. The old
+proposal stays <em>Pending</em> on the governor forever — there is no cancel — but nothing can
+execute it except an agent key, and this one never will. Only the newest Pending proposal is
+ever considered; older ones are never revived, because their calldata was priced for a market
+nobody has looked at since.</p>
+
+<h2 id="fee">The performance fee comes out of the agent's wallet</h2>
+
+<p><code>settle</code> pulls the fee from <code>msg.sender</code>. Before settling a profitable
+cycle the runner computes the fee, checks the wallet holds it in the vault's asset, approves
+exactly that amount to the governor, and only then settles. If the balance is short it logs
+the exact amount needed and retries next round; the position is already back in the vault by
+then, so nothing is at risk while it waits. Keep the agent wallet funded with ETH for gas and
+with the vault's asset for fees.</p>
+
+<h2 id="config">Configuration</h2>
+
+<table>
+<thead><tr><th>Variable</th><th>Required</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td><code>PRIVATE_KEY</code></td><td>yes</td><td>The agent key. Must be an agent on the governor, hold ETH for gas and the vault's asset for fees</td></tr>
+<tr><td><code>RECURVE_VAULT</code>, <code>RECURVE_GOVERNOR</code>, <code>RECURVE_REGISTRY</code></td><td>yes</td><td>The fund</td></tr>
+<tr><td><code>RECURVE_STRATEGY</code></td><td>yes</td><td>Its <code>PortfolioStrategyV2</code></td></tr>
+<tr><td><code>RECURVE_TOKEN</code></td><td>yes</td><td>The one basket leg the strategy buys, despite the name: NVDA, <code>0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC</code></td></tr>
+<tr><td><code>DEX_QUOTER</code></td><td>yes</td><td>Uniswap V3 <code>QuoterV2</code>, <code>0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7</code></td></tr>
+<tr><td><code>RECURVE_CHAIN_ID</code></td><td></td><td><code>4663</code>, the default</td></tr>
+<tr><td><code>RECURVE_RPC_URL</code></td><td></td><td>Overrides the network's public endpoint. Must be the same chain</td></tr>
+<tr><td><code>RECURVE_DEPLOY_BLOCK</code></td><td></td><td>Block the governor went up; bounds the log scan</td></tr>
+<tr><td><code>LOG_CHUNK</code></td><td></td><td>Blocks per <code>eth_getLogs</code>. Default 100,000, the most the Robinhood Chain RPC accepts</td></tr>
+<tr><td><code>MIN_TRADE</code></td><td></td><td>Smallest funding worth a proposal, in whole units of the asset. Default <code>0.001</code></td></tr>
+<tr><td><code>RESERVE_BPS</code></td><td></td><td>Share of total assets kept idle so small exits clear instantly. Default 1000 (10%)</td></tr>
+<tr><td><code>HOLD_SECONDS</code></td><td></td><td>Unwind this long after funding. Unset holds until exits or <code>FORCE_UNWIND</code> demand it</td></tr>
+<tr><td><code>PRICE_TOLERANCE_BPS</code></td><td></td><td>See the floor. Default 300</td></tr>
+<tr><td><code>FORCE_UNWIND</code></td><td></td><td><code>true</code>: sell, return, settle, then stay idle</td></tr>
+<tr><td><code>PAUSED</code></td><td></td><td><code>true</code>: read and report, never act</td></tr>
+<tr><td><code>DRY_RUN</code></td><td></td><td><code>true</code>: simulate every action and log it; send nothing</td></tr>
+<tr><td><code>RUNNER_INTERVAL_MS</code></td><td></td><td>Poll interval. Default 60000</td></tr>
+<tr><td><code>PORT</code></td><td></td><td><code>/health</code> port. Default 8080</td></tr>
+</tbody>
+</table>
+
+<p>The pool fee tier, the strategy's slippage cap and the governor's performance fee are read
+from the contracts, not configured, so they cannot disagree.</p>
+
+<h2 id="boot">Boot checks</h2>
+
+<p>The process refuses to start, with the reason on the first line of the log, if: the RPC is
+not Robinhood Chain; the governor, vault and strategy do not reference each other; the
+token is not in the strategy's basket; the key is not an agent; the quoter cannot price the
+strategy's pool; or the wallet holds no ETH. A read that returns no data names the address, so
+an address from another chain fails at boot rather than at the first transaction.</p>
+
+<h2 id="operating">Operating it</h2>
+
+<p><code>GET /health</code> answers with the last round: what it decided, when, and the last
+error if any. It returns 503 after three failed rounds in a row, so point a
+healthcheck at it. Failed rounds back off exponentially to ten minutes. Every write is
+simulated before it is sent; start any new deployment with <code>DRY_RUN=true</code> and read a
+few rounds of log before removing it.</p>
+
+<pre><code>git clone https://github.com/Recurve-Money/recurve-runner
+cd recurve-runner && npm install
+cp .env.example .env      # fill it in, keep DRY_RUN=true; the runner loads .env from its folder
+npm start</code></pre>
+
+<p>It is one long-running Node process with no state of its own: any host that restarts it on
+failure will do. Set every required variable there first.</p>
+
+<div class="pager">
+<a href="/docs/fees"><span class="dir">Previous</span><span class="ttl">Fees and settlement</span></a>
+<a class="next" href="/docs/agent-skill"><span class="dir">Next</span><span class="ttl">Agent skill</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#what">What it does</a>
+<a href="#policy">The policy</a>
+<a href="#floor">The price floor</a>
+<a href="#abandon">Stuck proposals</a>
+<a href="#fee">The performance fee comes out of the agent&#x27;s wallet</a>
+<a href="#config">Configuration</a>
+<a href="#boot">Boot checks</a>
+<a href="#operating">Operating it</a></nav>
+</div>
+
+</body>
+</html>

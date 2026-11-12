@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vaults - Recurve Docs</title>
+<meta name="description" content="Every fund is an ERC-4626 vault with voting shares. It holds the idle balance, counts what is deployed, and lets capital out to a strategy only through its governor.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Vaults - Recurve Docs">
+<meta property="og:description" content="Every fund is an ERC-4626 vault with voting shares. It holds the idle balance, counts what is deployed, and lets capital out to a strategy only through its governor.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/vaults">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults" class="on">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Protocol</p>
+    <h1>Vaults</h1>
+    <p class="subtitle">Every fund is an ERC-4626 vault with voting shares. It holds the idle balance, counts what is deployed, and lets capital out to a strategy only through its governor.</p>
+
+<h2 id="standard">Standard where it counts</h2>
+
+<p><code>RecurveVault</code> is ERC-4626, so <code>deposit</code>, <code>mint</code>,
+<code>convertToAssets</code>, <code>previewRedeem</code> and the rest behave the way any
+integrator expects. It also extends <code>ERC20Votes</code>, which is what lets the governor
+snapshot voting weight, and <code>ERC20Permit</code>, so shares can be approved by signature.
+Shares carry the asset's decimals (no decimals offset) and an empty vault mints 1:1.</p>
+
+<h3 id="deposit-cap">Deposit cap</h3>
+
+<p><code>depositCap</code> is a ceiling on <code>totalAssets()</code>, set in the constructor
+and enforced through the standard hooks: <code>maxDeposit</code> returns the room left under the
+cap in asset terms (zero once <code>totalAssets()</code> reaches it, whoever the receiver is)
+and <code>maxMint</code> the same room in shares. <code>deposit</code> and <code>mint</code>
+revert above those with OpenZeppelin's <code>ERC4626ExceededMaxDeposit</code> and its mint
+counterpart. Because the cap is on total assets, profit a strategy brings back consumes cap
+room.</p>
+
+<pre><code>raiseDepositCap(uint256 newCap)   // deployer only, emits DepositCapRaised(previousCap, newCap)</code></pre>
+
+<p>One-directional: whoever deployed the vault can raise it, anyone else reverts with
+<code>OnlyDeployer</code>, and a value at or below the current cap reverts with
+<code>CapCannotDecrease</code>. The Recurve Fund starts at 10,000 USDG (<code>DEPOSIT_CAP</code>
+in the deploy settings).</p>
+
+<h2 id="accounting">Accounting</h2>
+
+<pre><code>totalAssets() = idle balance + deployedAssets
+float()       = idle balance</code></pre>
+
+<p><code>deployedAssets</code> is carried explicitly rather than inferred, because a position
+mid-strategy is neither in the balance nor visible to <code>balanceOf</code>. It is one number
+for the whole vault, not one per proposal: every <code>fundStrategy</code> adds to it and one
+<code>settleStrategy</code> zeroes it.</p>
+
+<table>
+<thead><tr><th>Function</th><th>Returns</th></tr></thead>
+<tbody>
+<tr><td><code>totalAssets()</code></td><td>Everything owed to depositors</td></tr>
+<tr><td><code>float()</code></td><td>The idle balance. Queued exits reserve nothing from it (the <code>pendingWithdrawalAssets</code> field it subtracts is never written)</td></tr>
+<tr><td><code>deployedAssets()</code></td><td>Committed to a live strategy</td></tr>
+<tr><td><code>depositCap()</code></td><td>Ceiling on <code>totalAssets()</code></td></tr>
+<tr><td><code>queueLength()</code></td><td>Redemption requests ever created, claimed ones included</td></tr>
+<tr><td><code>withdrawalQueue(i)</code></td><td><code>(shares, requestedAt, receiver, claimed)</code></td></tr>
+<tr><td><code>requestIdsOf(owner)</code></td><td>Queue positions belonging to an owner</td></tr>
+</tbody>
+</table>
+
+<div class="note warn">
+  <span class="tag">Between return and settle</span>
+  <p>When a strategy sends assets back to the vault, the balance rises while
+  <code>deployedAssets</code> is still counted, so <code>totalAssets()</code> and the share
+  price are inflated until <code>settle</code> runs. Claims and instant redemptions in that
+  window are priced on the inflated number. The <a href="/docs/runner">runner</a> settles in the
+  round after the return executes to keep the window short.</p>
+</div>
+
+<h2 id="movement">How capital moves</h2>
+
+<p><code>fundStrategy(target, assets)</code> is the governor's way out: it transfers assets to
+the target, adds them to <code>deployedAssets</code>, and reverts with <code>FloatTooLow</code>
+if the request exceeds the idle balance. Only the governor can call it, and the governor only
+calls it from an executed proposal. <code>settleStrategy(returned)</code> is the way back on
+paper: it zeroes <code>deployedAssets</code> and emits <code>StrategySettled(returned, pnl)</code>.
+It does not move tokens and does not check that <code>returned</code> arrived — the strategy
+transfers assets back on its own, and the governor reports the number.</p>
+
+<p>Depositors have a second exit the queue does not cover. The standard ERC-4626
+<code>withdraw</code> and <code>redeem</code> are not overridden: they pay from the idle balance
+and, when it is short, revert inside the asset's transfer instead of queueing.
+<code>maxWithdraw</code> and <code>maxRedeem</code> report the holder's full position, not what
+the balance can pay. Use <code>requestRedeem</code>, as the app and SDK do, to get the queue.</p>
+
+<h2 id="redeem">Redemption</h2>
+
+<pre><code>requestRedeem(uint256 shares, address receiver, address owner) -> uint256 requestId
+claimRedeem(uint256 requestId) -> uint256 assets</code></pre>
+
+<p><code>requestRedeem</code> pays instantly when <code>previewRedeem(shares)</code> fits in the
+idle balance and returns <code>type(uint256).max</code> as a sentinel. Otherwise it moves the
+shares into the vault's own custody, appends to the queue, emits
+<code>WithdrawalQueued(owner, requestId, shares)</code>, and returns the queue index. The
+receiver is fixed at request time.</p>
+
+<p><code>claimRedeem</code> prices at claim time, not request time — that is the whole reason
+the queue exists. It reverts with <code>RequestNotReady</code> while the idle balance cannot
+cover the shares' current value, <code>RequestAlreadyClaimed</code> on a repeat, and
+<code>NotRequestOwner</code> unless the caller is the address that owned the shares when the
+request was made (not the receiver, not an operator). Ready requests can be claimed in any
+order; there is no expiry and no cancel.</p>
+
+<div class="note">
+  <span class="tag">Note</span>
+  <p>Escrowed shares keep counting toward supply until the claim burns them, which is why
+  <code>totalAssets</code> does not net them out — and they carry no voting weight while they
+  wait, because the vault delegates to nobody.</p>
+</div>
+
+<h2 id="votes">Votes</h2>
+
+<p>Voting weight is checkpointed by block. <code>getPastVotes(holder, block)</code> is what the
+governor reads at a proposal's snapshot; it is zero for a holder who never called
+<code>delegate</code>. <code>getPastTotalSupply(block)</code> is the denominator for the veto
+threshold and counts every share, delegated or not. A delegation in the same block as a proposal
+is not visible to that proposal's snapshot.</p>
+
+<div class="pager">
+<a href="/docs/concepts"><span class="dir">Previous</span><span class="ttl">Core concepts</span></a>
+<a class="next" href="/docs/governance"><span class="dir">Next</span><span class="ttl">Governance</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#standard">Standard where it counts</a>
+<a href="#deposit-cap" class="sub">Deposit cap</a>
+<a href="#accounting">Accounting</a>
+<a href="#movement">How capital moves</a>
+<a href="#redeem">Redemption</a>
+<a href="#votes">Votes</a></nav>
+</div>
+
+</body>
+</html>

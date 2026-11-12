@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>$RECURVE price - Recurve</title>
+<meta name="description" content="Price, market cap, and liquidity for $RECURVE on Robinhood Chain.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Recurve">
+<meta property="og:title" content="$RECURVE price - Recurve">
+<meta property="og:description" content="Price, market cap, and liquidity for $RECURVE on Robinhood Chain.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/buy">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* ---------------------------------------------------------------- buy page */
+.buy-head{padding:56px 0 0;text-align:center}
+.ticker-lg{
+  font-size:clamp(44px,7vw,84px);line-height:1;letter-spacing:-0.035em;font-weight:400;
+}
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  max-width:960px;margin:44px auto 0;
+}
+.stat-box{border:1px solid var(--rule);border-radius:16px;padding:22px}
+.stat-box .k{font-size:13px;color:var(--muted);margin-bottom:8px;letter-spacing:.02em}
+.stat-box .v{
+  font-size:26px;letter-spacing:-0.022em;font-variant-numeric:tabular-nums;
+}
+.stat-box .d{font-size:13px;margin-top:5px;font-variant-numeric:tabular-nums}
+.up{color:#0F7A55}
+.down{color:#8C2F1C}
+
+.chart-wrap{
+  max-width:1100px;margin:40px auto 0;
+  border:1px solid var(--rule);border-radius:18px;overflow:hidden;
+  background:var(--shade);
+}
+.chart-wrap iframe{display:block;width:100%;height:520px;border:0}
+.chart-wrap:empty{display:none}
+
+.venue-row{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .chart-wrap iframe{height:380px}
+  .buy-head{padding:36px 0 0}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/" aria-label="Recurve">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+  </div>
+  <nav class="nav" aria-label="Main">
+      <a href="/product">Product</a>
+      <a href="/token">Token</a>
+      <a href="/watchers">Watchers</a>
+      <a href="/docs">Documentation</a>
+    </nav>
+    <a class="hdr-icon" href="https://github.com/Recurve-Money" aria-label="GitHub" title="GitHub">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+    </a>
+    <a class="hdr-icon" href="https://discord.com/invite/SXMwpGcGC3" aria-label="Discord" title="Discord">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.55 2.9A13 13 0 0 0 10.3 1.9a9 9 0 0 0-.42.85 12 12 0 0 0-3.6 0A9 9 0 0 0 5.85 1.9a13 13 0 0 0-3.25 1A13.4 13.4 0 0 0 .3 11.99a13.1 13.1 0 0 0 3.98 2.01c.32-.44.6-.9.85-1.4a8.5 8.5 0 0 1-1.34-.64l.33-.26a9.4 9.4 0 0 0 8.03 0l.33.26c-.43.25-.88.47-1.35.64.25.5.54.96.85 1.4a13 13 0 0 0 3.99-2.02 13.3 13.3 0 0 0-2.32-9.07M5.53 10.4c-.78 0-1.43-.72-1.43-1.6s.63-1.6 1.43-1.6c.8 0 1.44.72 1.43 1.6 0 .88-.63 1.6-1.43 1.6m5.28 0c-.79 0-1.43-.72-1.43-1.6s.63-1.6 1.43-1.6c.8 0 1.44.72 1.43 1.6 0 .88-.63 1.6-1.43 1.6"/></svg>
+    </a>
+    <a class="hdr-icon" href="https://x.com/recurvemoney" aria-label="X" title="X">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+    </a>
+    <a class="ticker-pill on" href="/buy" id="tickerPill">
+      <span class="tp-sym">$RECURVE</span>
+      <span class="tp-price" id="pillPrice">--</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+      <span></span><span></span>
+    </button>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+</header>
+
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile">
+  <a href="/product">Product</a>
+  <a href="/token">Token</a>
+  <a href="/watchers">Watchers</a>
+  <a href="/docs">Documentation</a>
+  <a class="btn btn-dark" href="/app">Open app</a>
+  <div class="drawer-social">
+    <a href="https://github.com/Recurve-Money"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>GitHub</a>
+    <a href="https://discord.com/invite/SXMwpGcGC3"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.55 2.9A13 13 0 0 0 10.3 1.9a9 9 0 0 0-.42.85 12 12 0 0 0-3.6 0A9 9 0 0 0 5.85 1.9a13 13 0 0 0-3.25 1A13.4 13.4 0 0 0 .3 11.99a13.1 13.1 0 0 0 3.98 2.01c.32-.44.6-.9.85-1.4a8.5 8.5 0 0 1-1.34-.64l.33-.26a9.4 9.4 0 0 0 8.03 0l.33.26c-.43.25-.88.47-1.35.64.25.5.54.96.85 1.4a13 13 0 0 0 3.99-2.02 13.3 13.3 0 0 0-2.32-9.07M5.53 10.4c-.78 0-1.43-.72-1.43-1.6s.63-1.6 1.43-1.6c.8 0 1.44.72 1.43 1.6 0 .88-.63 1.6-1.43 1.6m5.28 0c-.79 0-1.43-.72-1.43-1.6s.63-1.6 1.43-1.6c.8 0 1.44.72 1.43 1.6 0 .88-.63 1.6-1.43 1.6"/></svg>Discord</a>
+    <a href="https://x.com/recurvemoney"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>X</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="buy-head">
+    <div class="wrap">
+      <h1 class="ticker-lg">$RECURVE</h1>
+      <p class="lead muted" style="margin-top:18px">The stake behind every watcher verdict.</p>
+
+      <div id="caRow" hidden>
+        <span class="ca">
+          <span id="caText" data-ca>--</span>
+          <button type="button" id="caCopy" data-ca-copy>copy</button>
+        </span>
+      </div>
+      <p class="test-flag" data-test-flag hidden>Test address. This is not $RECURVE - do not buy it.</p>
+    </div>
+  </section>
+
+  <!-- market data, filled by token-stats.js from the address published at /admin -->
+  <section id="liveState">
+    <div class="wrap">
+      <div class="center" data-when="no-token" hidden style="margin-top:32px">
+        <p class="lead" style="max-width:620px;margin:0 auto"><strong>$RECURVE launches soon on Pons.</strong> The official address, the price and the chart will appear on this page.</p>
+        <div class="closer-actions">
+          <a class="btn btn-dark" href="https://x.com/recurvemoney">Follow on X</a>
+        </div>
+      </div>
+    </div>
+    <div class="band" data-when="no-token" hidden style="margin-top:72px">
+      <img style="object-position:20% 50%" src="/img/closer-archer.jpg" srcset="/img/closer-archer-sm.jpg 900w, /img/closer-archer.jpg 2400w" sizes="100vw" alt="An archer at full draw at the forest edge, a stag watching from the treeline" width="2400" height="706" decoding="async">
+    </div>
+    <div class="wrap">
+
+      <div class="stats-row" data-when="token" hidden>
+        <div class="stat-box">
+          <div class="k">Price</div>
+          <div class="v" id="sPrice">--</div>
+          <div class="d" id="sChange"></div>
+        </div>
+        <div class="stat-box">
+          <div class="k">Market cap</div>
+          <div class="v" id="sMcap">--</div>
+        </div>
+        <div class="stat-box">
+          <div class="k">Liquidity</div>
+          <div class="v" id="sLiq">--</div>
+        </div>
+        <div class="stat-box">
+          <div class="k">24h volume</div>
+          <div class="v" id="sVol">--</div>
+        </div>
+      </div>
+
+      <p class="sm muted" id="noPool" style="text-align:center;margin-top:22px" hidden>Trading on its Pons curve. The numbers and the chart appear here once Dexscreener lists the pool.</p>
+
+      <div class="chart-wrap" id="chartWrap"></div>
+
+      <div class="venue-row">
+        <a class="btn btn-dark" id="vBuy" data-buy data-when="token" hidden href="https://www.ponsfamily.com/launchpad">Buy on Pons</a>
+        <a class="btn btn-light" id="vDex" data-when="token" hidden href="#">Dexscreener</a>
+        <a class="btn btn-light" id="vGecko" data-when="token" hidden href="#">GeckoTerminal</a>
+        <a class="btn btn-light" id="vScan" data-when="token" hidden href="#">Explorer</a>
+      </div>
+
+      <p class="sm muted" data-when="token" hidden style="text-align:center;margin-top:22px">
+        Figures come from onchain pool data and refresh every 30 seconds.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="brand" href="/">
+          <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+          <span>Recurve</span>
+        </a>
+        <p class="tag">Capital infrastructure for autonomous funds.</p>
+        <p class="copy">© 2026 Recurve Protocol</p>
+        <div class="langs"><a class="on" href="/">EN</a><a href="/zh/">中文</a></div>
+      </div>
+      <div>
+        <h4>Recurve Protocol</h4>
+        <ul>
+          <li><a href="/product">Product</a></li>
+          <li><a href="/token">Token</a></li>
+          <li><a href="/watchers">Watchers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Developers</h4>
+        <ul>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/docs/agent-skill">Agent skill</a></li>
+          <li><a href="/docs/watcher-skill">Watcher skill</a></li>
+          <li><a href="https://github.com/Recurve-Money">GitHub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://x.com/RecurveMoney">X / Twitter</a></li>
+          <li><a href="https://discord.com/invite/SXMwpGcGC3">Discord</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/token-stats.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById("navToggle");
+  var drawer = document.getElementById("navDrawer");
+  if (!btn || !drawer) return;
+  function set(open) {
+    btn.setAttribute("aria-expanded", String(open));
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    drawer.classList.toggle("open", open);
+    document.body.classList.toggle("nav-open", open);
+  }
+  btn.addEventListener("click", function () {
+    set(btn.getAttribute("aria-expanded") !== "true");
+  });
+  drawer.addEventListener("click", function (e) { if (e.target.tagName === "A") set(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
+})();
+</script>
+</body>
+</html>
+

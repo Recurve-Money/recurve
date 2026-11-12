@@ -1,0 +1,33 @@
+<!doctype html>
+<!--
+  The link preview (og:image) for every page: the home hero at 1200x630.
+  Render it to ../img/og.jpg after changing the headline, the mark or the painting:
+
+    chrome --headless=new --hide-scrollbars --window-size=1200,630 \
+           --virtual-time-budget=8000 --screenshot=og.png site/build/og.html
+    magick og.png -quality 88 -strip site/img/og.jpg
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;overflow:hidden;background:#fff;color:#0A0A0A;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
+.top{height:286px;padding:44px 56px 0;display:flex;flex-direction:column;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:13px}
+.brand svg{height:34px;width:auto}
+.brand span{font-size:31px;font-weight:500;letter-spacing:-0.03em}
+h1{font-size:68px;line-height:1;letter-spacing:-0.035em;font-weight:400;padding-bottom:34px}
+.band{height:344px;overflow:hidden}
+.band img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 46%}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand"><svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg><span>Recurve</span></div>
+  <h1>Capital infrastructure<br>for autonomous funds.</h1>
+</div>
+<div class="band"><img src="../img/hero-hands.jpg" alt=""></div>
+</body>
+</html>

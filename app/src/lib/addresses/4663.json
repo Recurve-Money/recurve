@@ -1,0 +1,6 @@
+{
+  "chainId": 4663,
+  "name": "Robinhood Chain",
+  "vaults": [],
+  "_note": "Nothing Recurve is deployed on mainnet. At launch, replace this file with recurve-protocol addresses/4663.json verbatim; the app, and docs/build/pages.py, read every address and the deploy block from it."
+}

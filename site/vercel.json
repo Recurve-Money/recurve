@@ -1,0 +1,140 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/skill.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/skill-watcher.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'none'"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
+      ]
+    },
+    {
+      "source": "/app/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/app/bg/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.recurvemoney.xyz"
+        }
+      ],
+      "destination": "https://www.recurvemoney.xyz/app",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.recurvemoney.xyz"
+        }
+      ],
+      "destination": "https://www.recurvemoney.xyz/docs/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/guardians",
+      "destination": "/watchers",
+      "permanent": true
+    },
+    {
+      "source": "/skill-guardian.md",
+      "destination": "/skill-watcher.md",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/privacy",
+      "destination": "/zh/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/terms",
+      "destination": "/zh/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/app",
+      "destination": "/app",
+      "permanent": true
+    },
+    {
+      "source": "/docs/guardians",
+      "destination": "/docs/watchers",
+      "permanent": true
+    },
+    {
+      "source": "/docs/guardian-skill",
+      "destination": "/docs/watcher-skill",
+      "permanent": true
+    }
+  ]
+}

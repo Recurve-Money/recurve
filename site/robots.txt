@@ -1,0 +1,3 @@
+# Recurve is public. Crawl away.
+User-agent: *
+Allow: /

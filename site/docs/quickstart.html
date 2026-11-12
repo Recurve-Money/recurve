@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quickstart - Recurve Docs</title>
+<meta name="description" content="Install the SDK, point it at a vault, and read its state. Then deposit.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recurve Docs">
+<meta property="og:title" content="Quickstart - Recurve Docs">
+<meta property="og:description" content="Install the SDK, point it at a vault, and read its state. Then deposit.">
+<meta property="og:url" content="https://www.recurvemoney.xyz/docs/quickstart">
+<meta property="og:image" content="https://www.recurvemoney.xyz/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@recurvemoney">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/icon.png?v=3" type="image/png" sizes="256x256">
+<link rel="apple-touch-icon" href="/apple-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <a class="brand" href="/docs" aria-label="Recurve Docs">
+      <svg viewBox="0 0 612 759" fill="currentColor" aria-hidden="true"><path d="M553 5.6a869 869 0 0 0-73 7.4 1118 1118 0 0 0-69.5 12.6c-111.8 25.6-185.8 56.6-250 104.5a409 409 0 0 0-64.2 59.4l-11.4 14c-40.7 50-78.3 143-80.2 198-.3 9.2.7 8.5 11-7.1 28.1-42.5 53.5-72 86.3-100.5 78.9-68.4 212.1-120.4 323.9-126.5 12.3-.7 12.3-.7 17.6-5.3 7.5-6.6 47.1-43.9 66-62.1 21.4-20.7 68.7-64.8 85.8-80 8.8-7.8 13.7-12.9 13.5-13.9-.4-2.1-26.9-2.4-55.8-.5m-77 245.1c-56.8 2.6-115.6 11.2-152.5 22.2L310 277C164.8 320.5 74.7 407 33.6 542.5A422 422 0 0 0 18 605c-5.4 28.7-6.1 37.7-2.7 33.7a43 43 0 0 0 4.7-8.5c3.6-9.2 18.3-36.9 24.6-46.8 7.6-11.8 16.6-25 20.1-29.4 15.4-19.4 21.1-26 37.2-42.1a335 335 0 0 1 44-38.4l12.2-8.5c27.4-19 102.9-51.2 119.7-51 .8 0 4.6-.9 8.5-1.9 9.8-2.6 22.9-4.8 37.1-6.3 11.9-1.2 11.9-1.2 18.3-6.7a1502 1502 0 0 1 64.7-62.1l31.9-29.5c16.4-15.1 24.7-22.7 45-40.6 19.3-17.2 19.2-17.5-7.3-16.2M275.5 495.6c-39.3 12.1-62.9 24.1-88.7 45.2-19.2 15.6-19.5 16.8-9 32.3 48.9 72.4 138.5 143.3 215.2 170.4 5.8 2.1 15.1 5.7 20.7 8.1 19.5 8.3 19.8 5.4 1.4-10.1a416 416 0 0 1-57.1-57.9 300 300 0 0 1-30.7-41.6l-7.8-13c-18.7-31.3-32.7-82.1-31.1-113.4 1.3-24.7 1.5-22.1-1.9-22.3-1.6-.1-6.6.9-11 2.3"/></svg>
+      <span>Recurve</span>
+    </a>
+    <span class="sm muted" style="border-left:1px solid var(--rule);padding-left:14px">Docs</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="sm muted" href="/" style="font-size:15px">Website</a>
+    <a class="sm muted" href="https://github.com/Recurve-Money" style="font-size:15px">GitHub</a>
+    <a class="btn btn-dark btn-sm" href="/app">Open app</a>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <nav class="side">
+<div class="side-group"><h4>Getting started</h4>
+<a href="/docs">Introduction</a>
+<a href="/docs/app">Using the app</a>
+<a href="/docs/quickstart" class="on">Quickstart</a>
+<a href="/docs/concepts">Core concepts</a>
+</div>
+<div class="side-group"><h4>Protocol</h4>
+<a href="/docs/vaults">Vaults</a>
+<a href="/docs/governance">Governance</a>
+<a href="/docs/watchers">Watchers</a>
+<a href="/docs/strategies">Strategies</a>
+<a href="/docs/fees">Fees and settlement</a>
+</div>
+<div class="side-group"><h4>Operating a fund</h4>
+<a href="/docs/runner">Running the agent</a>
+<a href="/docs/agent-skill">Agent skill</a>
+<a href="/docs/watcher-skill">Watcher skill</a>
+</div>
+<div class="side-group"><h4>Reference</h4>
+<a href="/docs/sdk">SDK reference</a>
+<a href="/docs/api">Indexer API</a>
+<a href="/docs/contracts">Contracts</a>
+<a href="/docs/errors">Errors</a>
+<a href="/docs/deployment">Deployment</a>
+</div>
+<div class="side-group"><h4>Roadmap</h4>
+<a href="/docs/perp-strategy">Off-chain venues</a>
+</div>
+  </nav>
+
+  <article class="doc">
+    <p class="crumb">Getting started</p>
+    <h1>Quickstart</h1>
+    <p class="subtitle">Install the SDK, point it at a vault, and read its state. Then deposit.</p>
+
+<h2 id="install">Install</h2>
+
+<pre><code>npm install @recurvemoney/sdk viem</code></pre>
+
+<p><code>viem</code> is a peer dependency. The SDK reuses the clients you already have rather than
+opening its own transport. It ships as ESM only and needs Node 20 or newer.</p>
+
+<h2 id="connect">Connect</h2>
+
+<p>viem 2.55 and newer ship Robinhood Chain, so import it. Pass the chain to both
+clients: the SDK forwards <code>walletClient.chain</code> to every transaction as-is and never
+checks that your clients and your addresses agree on a chain id, so the chain and the address
+set always travel together.</p>
+
+<pre><code>import {createPublicClient, createWalletClient, http} from "viem";
+import {robinhood} from "viem/chains";              // Robinhood Chain (chain id 4663)
+import {privateKeyToAccount} from "viem/accounts";
+import {Recurve, type RecurveAddresses} from "@recurvemoney/sdk";
+
+const chain = robinhood;
+const addresses: RecurveAddresses = {
+  vault:    "0x...",
+  governor: "0x...",
+  registry: "0x...",
+};
+
+const publicClient = createPublicClient({chain, transport: http()});
+const recurve = new Recurve({publicClient, addresses});</code></pre>
+
+<p>Every address is under <a href="/docs/contracts#addresses">Contracts</a>. On viem older than 2.55,
+build the chain with <code>defineChain</code> (id 4663, RPC
+<code>https://rpc.mainnet.chain.robinhood.com</code>).</p>
+
+<p>Leaving out <code>walletClient</code> gives you a read-only instance. Every write rejects
+immediately with <code>This call needs a walletClient; the SDK was built read-only.</code>
+instead of failing partway through, which is what you want in an indexer.</p>
+
+<h2 id="read">Read a vault</h2>
+
+<pre><code>const snap = await recurve.vault.snapshot();
+
+snap.totalAssets     // everything the vault owes depositors: idle balance + deployedAssets
+snap.float           // the idle balance, what an exit can take right now
+snap.deployedAssets  // committed to a live strategy
+snap.totalSupply     // shares outstanding
+snap.sharePrice      // asset base units per 1e18 shares; exactly 1e18 while the vault is empty
+snap.asset           // the ERC-20 the fund is denominated in</code></pre>
+
+<p>Every number is a <code>bigint</code> in on-chain base units; the SDK never reads
+<code>decimals()</code> or formats. <code>float</code> and <code>deployedAssets</code> sum to
+<code>totalAssets</code>: a position mid-strategy still belongs to depositors, so it stays
+counted.</p>
+
+<h2 id="deposit">Deposit</h2>
+
+<pre><code>const walletClient = createWalletClient({
+  account: privateKeyToAccount(PRIVATE_KEY),
+  chain,                        // the same chain the addresses belong to
+  transport: http(),
+});
+
+const recurveWithWallet = new Recurve({publicClient, walletClient, addresses});
+
+const hash = await recurveWithWallet.depositor.deposit(1_000_000n);   // 1 USDG, which has 6 decimals</code></pre>
+
+<p>That is up to three transactions, each awaited to its receipt: an unlimited
+<code>approve</code> of the asset to the vault if the allowance is short, the
+<code>deposit</code> itself (the receiver is always the signer), and a
+<code>delegate</code> to the signer. Only the deposit hash is returned.</p>
+
+<div class="note">
+  <span class="tag">Why it self-delegates</span>
+  <p>ERC20Votes weight is zero until delegated. A depositor who skips that step holds shares
+  that cannot veto anything, and only finds out during a live proposal. The SDK delegates for
+  you on every deposit; pass <code>{skipDelegate: true}</code> if you delegate elsewhere.</p>
+</div>
+
+<h2 id="exit">Exit</h2>
+
+<pre><code>const {instant, requestId} = await recurveWithWallet.depositor.redeem(500_000n);   // 0.5 rvFUND
+
+if (!instant && requestId !== undefined) {
+  // The float did not cover it. Claim once the vault's balance does.
+  await recurveWithWallet.depositor.claim(requestId);
+}</code></pre>
+
+<p>Branch on <code>instant</code> rather than assuming, and check <code>requestId</code>
+explicitly — its type is <code>bigint | undefined</code>, and TypeScript will not narrow it
+from <code>instant</code>. <code>claim</code> reverts with <code>RequestNotReady</code> until
+the vault's idle balance covers the request. The SDK has no read for a queued request; with the
+full vault ABI, <code>withdrawalQueue(requestId)</code> returns its shares and
+<code>claimed</code> flag, and it is claimable once <code>previewRedeem(shares) &lt;= float()</code>.</p>
+
+<h2 id="next">Next</h2>
+
+<p>The full method list is on the <a href="/docs/sdk">SDK reference</a>. Proposing, executing and
+settling as an agent is on <a href="/docs/runner">Running the agent</a>; staking and verdicts on the
+<a href="/docs/watcher-skill">watcher skill</a>.</p>
+
+<div class="pager">
+<a href="/docs/app"><span class="dir">Previous</span><span class="ttl">Using the app</span></a>
+<a class="next" href="/docs/concepts"><span class="dir">Next</span><span class="ttl">Core concepts</span></a>
+</div>
+  </article>
+
+<nav class="toc"><h4>On this page</h4><a href="#install">Install</a>
+<a href="#connect">Connect</a>
+<a href="#read">Read a vault</a>
+<a href="#deposit">Deposit</a>
+<a href="#exit">Exit</a>
+<a href="#next">Next</a></nav>
+</div>
+
+</body>
+</html>

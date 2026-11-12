@@ -1,0 +1,436 @@
+/* Docs layout: fixed sidebar, prose column, on-page nav. Inherits tokens from style.css. */
+
+:root {
+  --max: 1500px; /* the docs column; the shared header lines up with it */
+  --sidebar: 268px;
+  --toc: 210px;
+}
+
+.docs-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar) minmax(0, 1fr) var(--toc);
+  gap: 56px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------- sidebar */
+.side {
+  position: sticky;
+  top: 84px;
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+  padding: 40px 0 60px;
+  font-size: 15px;
+}
+
+.side-group {
+  margin-bottom: 26px;
+}
+
+.side-group h4 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.side-group a {
+  display: block;
+  padding: 6px 12px;
+  margin-left: -12px;
+  border-radius: 8px;
+  color: rgba(10, 10, 10, 0.72);
+  line-height: 1.35;
+  transition: background 0.15s, color 0.15s;
+}
+
+.side-group a:hover {
+  background: var(--shade);
+  color: var(--ink);
+}
+
+.side-group a.on {
+  background: var(--ink);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------------------- article */
+.doc {
+  padding: 40px 0 120px;
+  min-width: 0;
+}
+
+.doc .crumb {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+
+.doc h1 {
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.doc .subtitle {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 44px;
+  max-width: 640px;
+}
+
+.doc h2 {
+  font-size: 27px;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+  font-weight: 500;
+  margin: 56px 0 16px;
+  scroll-margin-top: 90px;
+}
+
+.doc h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+  font-weight: 500;
+  margin: 34px 0 12px;
+  scroll-margin-top: 90px;
+}
+
+.doc p {
+  font-size: 17px;
+  line-height: 1.62;
+  margin-bottom: 18px;
+  max-width: 720px;
+}
+
+.doc ul,
+.doc ol {
+  margin: 0 0 20px 22px;
+  max-width: 700px;
+}
+
+.doc ul {
+  list-style: disc;
+}
+
+.doc ol {
+  list-style: decimal;
+}
+
+.doc li {
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 9px;
+  padding-left: 4px;
+}
+
+.doc a:not(.btn) {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(10, 10, 10, 0.3);
+}
+
+.doc a:not(.btn):hover {
+  text-decoration-color: var(--ink);
+}
+
+.doc strong {
+  font-weight: 600;
+}
+
+.doc code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.88em;
+  background: var(--shade);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.doc pre {
+  background: var(--ink);
+  color: #f2f2ef;
+  border-radius: 13px;
+  padding: 20px 22px;
+  overflow-x: auto;
+  margin: 0 0 22px;
+  max-width: 760px;
+  line-height: 1.55;
+}
+
+.doc pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 13.5px;
+  color: inherit;
+}
+
+.doc table {
+  width: 100%;
+  max-width: 760px;
+  border-collapse: collapse;
+  margin: 0 0 24px;
+  font-size: 15px;
+}
+
+.doc th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+
+.doc td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.doc tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.doc blockquote {
+  border-left: 3px solid var(--mint);
+  background: var(--shade);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 0 0 22px;
+  max-width: 720px;
+}
+
+.doc blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.doc hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 48px 0;
+  max-width: 760px;
+}
+
+/* callouts */
+.note {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 0 0 22px;
+  max-width: 760px;
+  background: var(--shade);
+}
+
+.doc-cards + .note {
+  margin-top: 40px;
+}
+
+.note.warn {
+  border-color: rgba(190, 120, 20, 0.32);
+  background: rgba(240, 190, 90, 0.12);
+}
+
+.note .tag {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.note p:last-child {
+  margin-bottom: 0;
+}
+
+/* prev / next */
+.pager {
+  display: flex;
+  gap: 14px;
+  margin-top: 64px;
+  max-width: 760px;
+}
+
+.pager a {
+  flex: 1;
+  border: 1px solid var(--rule);
+  border-radius: 13px;
+  padding: 16px 20px;
+  text-decoration: none !important;
+  transition: background 0.15s;
+}
+
+.pager a:hover {
+  background: var(--shade);
+}
+
+.pager .dir {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.pager .ttl {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pager .next {
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------- toc */
+.toc {
+  position: sticky;
+  top: 84px;
+  padding: 44px 0 60px;
+  font-size: 14px;
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+}
+
+.toc h4 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.toc a {
+  display: block;
+  padding: 5px 0 5px 12px;
+  border-left: 2px solid var(--rule);
+  color: var(--muted);
+  line-height: 1.35;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.toc a:hover {
+  color: var(--ink);
+  border-left-color: var(--ink);
+}
+
+.toc a.sub {
+  padding-left: 24px;
+  font-size: 13px;
+}
+
+/* ---------------------------------------------------------------- index cards */
+.doc-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 36px 0 0;
+  max-width: 760px;
+}
+
+.doc-card {
+  border: 1px solid var(--rule);
+  border-radius: 15px;
+  padding: 24px;
+  text-decoration: none !important;
+  transition: background 0.15s;
+}
+
+.doc-card:hover {
+  background: var(--shade);
+}
+
+.doc-card h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.doc-card p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width: 1240px) {
+  .docs-shell {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 40px;
+  }
+  .toc {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .docs-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .side {
+    position: static;
+    max-height: none;
+    padding: 24px 0 0;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 24px;
+  }
+  .doc {
+    padding-top: 28px;
+  }
+  .doc-cards {
+    grid-template-columns: 1fr;
+  }
+  .pager {
+    flex-direction: column;
+  }
+  .pager .next {
+    text-align: left;
+  }
+}
+
+/* ---------------------------------------------------------------- mobile */
+@media (max-width:760px){
+  .doc h1{font-size:clamp(28px,7.6vw,36px)}
+  .doc h2{font-size:23px;margin:40px 0 12px}
+  .doc h3{font-size:18px}
+  .doc p,.doc li{font-size:16px}
+  .doc .subtitle{font-size:17px;margin-bottom:32px}
+
+  /* code blocks are the usual cause of sideways scroll on a phone */
+  .doc pre{padding:16px;font-size:12.5px;border-radius:10px}
+  .doc pre code{font-size:12.5px}
+
+  /* a wide reference table cannot reflow, so let it scroll on its own */
+  .doc table{display:block;overflow-x:auto;white-space:nowrap;font-size:14px}
+  .doc th,.doc td{padding:9px 12px}
+
+  .side{padding:18px 0}
+  .side-group{margin-bottom:18px}
+  .doc{padding:24px 0 72px}
+  .note{padding:14px 16px}
+  .doc-cards{gap:12px}
+
+  /* the header's three right-hand links do not fit beside the brand on a
+     phone; the site and repo are one tap away in the sidebar's neighbours
+     anyway, so keep only the app button */
+  .hdr{gap:12px}
+  .hdr .hdr-left{gap:14px}
+  .hdr > div > a.sm{display:none}
+}
+
+html,body{max-width:100%;overflow-x:hidden}
