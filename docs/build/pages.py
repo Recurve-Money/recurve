@@ -406,16 +406,18 @@ in the deploy settings).</p>
 float()       = idle balance</code></pre>
 
 <p><code>deployedAssets</code> is carried explicitly rather than inferred, because a position
-mid-strategy is neither in the balance nor visible to <code>balanceOf</code>. It is one number
-for the whole vault, not one per proposal: every <code>fundStrategy</code> adds to it and one
-<code>settleStrategy</code> zeroes it.</p>
+mid-strategy is neither in the balance nor visible to <code>balanceOf</code>. It is the sum of
+what is booked to each strategy target, <code>deployedTo(target)</code>: every
+<code>fundStrategy</code> adds to a target's part, and the target's return takes that part off
+again.</p>
 
 <table>
 <thead><tr><th>Function</th><th>Returns</th></tr></thead>
 <tbody>
 <tr><td><code>totalAssets()</code></td><td>Everything owed to depositors</td></tr>
 <tr><td><code>float()</code></td><td>The idle balance. Queued exits reserve nothing from it (the <code>pendingWithdrawalAssets</code> field it subtracts is never written)</td></tr>
-<tr><td><code>deployedAssets()</code></td><td>Committed to a live strategy</td></tr>
+<tr><td><code>deployedAssets()</code></td><td>Committed to live strategies</td></tr>
+<tr><td><code>deployedTo(target)</code></td><td>The part of it booked to one target</td></tr>
 <tr><td><code>depositCap()</code></td><td>Ceiling on <code>totalAssets()</code></td></tr>
 <tr><td><code>queueLength()</code></td><td>Redemption requests ever created, claimed ones included</td></tr>
 <tr><td><code>withdrawalQueue(i)</code></td><td><code>(shares, requestedAt, receiver, claimed)</code></td></tr>
@@ -424,12 +426,13 @@ for the whole vault, not one per proposal: every <code>fundStrategy</code> adds 
 </table>
 
 <div class="note warn">
-  <span class="tag">Between return and settle</span>
-  <p>When a strategy sends assets back to the vault, the balance rises while
-  <code>deployedAssets</code> is still counted, so <code>totalAssets()</code> and the share
-  price are inflated until <code>settle</code> runs. Claims and instant redemptions in that
-  window are priced on the inflated number. The <a href="/runner">runner</a> settles in the
-  round after the return executes to keep the window short.</p>
+  <span class="tag">A return closes the deployment</span>
+  <p>A strategy hands capital back through <code>returnFromStrategy</code>, which takes the
+  assets in and the deployment off the books in one call. <code>totalAssets()</code> and the
+  share price move by exactly the gain or the loss, once, and no exit is ever priced with the
+  returned assets counted twice. A venue that pays back with a plain transfer does not get
+  this: its deployment stays booked until <code>settle</code>, and until then the share price
+  is too high by what it sent back.</p>
 </div>
 
 <h2 id="movement">How capital moves</h2>
@@ -437,10 +440,16 @@ for the whole vault, not one per proposal: every <code>fundStrategy</code> adds 
 <p><code>fundStrategy(target, assets)</code> is the governor's way out: it transfers assets to
 the target, adds them to <code>deployedAssets</code>, and reverts with <code>FloatTooLow</code>
 if the request exceeds the idle balance. Only the governor can call it, and the governor only
-calls it from an executed proposal. <code>settleStrategy(returned)</code> is the way back on
-paper: it zeroes <code>deployedAssets</code> and emits <code>StrategySettled(returned, pnl)</code>.
-It does not move tokens and does not check that <code>returned</code> arrived — the strategy
-transfers assets back on its own, and the governor reports the number.</p>
+calls it from an executed proposal.</p>
+
+<p><code>returnFromStrategy(assets)</code> is the way back. The strategy approves the vault and
+calls it; the vault pulls the assets, clears whatever was booked to the caller and emits
+<code>StrategySettled(assets, pnl)</code> with the amount it actually received. Anyone may call
+it: a caller with nothing booked to it only gives the vault assets, and the one deployment a
+caller can close is its own. <code>settleStrategy(target, returned)</code> is governor-only and
+closes what is still booked to a target that paid back with a plain transfer, taking
+<code>returned</code> as the governor reports it; after a <code>returnFromStrategy</code> it has
+nothing to close and does nothing.</p>
 
 <p>Depositors have a second exit the queue does not cover. The standard ERC-4626
 <code>withdraw</code> and <code>redeem</code> are not overridden: they pay from the idle balance
@@ -602,23 +611,24 @@ does. A call to an address with no code succeeds, so a wrong target executes sil
 <pre><code>settle(bytes32 proposalId, uint256 returned)   // agents only, proposal must be Executed</code></pre>
 
 <p><code>settle</code> books the result of a funded proposal: it marks it Settled, computes the
-fee on <code>returned − assets</code> if positive, calls <code>vault.settleStrategy(returned)</code>
-which zeroes <code>deployedAssets</code>, pulls the fee from the calling agent's own wallet to
-<code>feeRecipient</code>, and emits <code>ProposalSettled(id, returned, fee)</code>.
-<code>returned</code> is the agent's report — the contract checks it against nothing — and the
-assets themselves come back through the strategy's <code>returnToVault</code>, before this
-call. Details on the fee are under <a href="/fees">Fees</a>.</p>
+fee on <code>returned − assets</code> if positive, calls
+<code>vault.settleStrategy(target, returned)</code>, pulls the fee from the calling agent's own
+wallet to <code>feeRecipient</code>, and emits <code>ProposalSettled(id, returned, fee)</code>.
+<code>returned</code> is the agent's report — the contract checks it against nothing. The assets
+themselves come back before this call, through the strategy's <code>returnToVault</code>, and
+that return has already closed the deployment in the vault (see
+<a href="/vaults#accounting">Accounting</a>): for such a strategy <code>settle</code> charges the
+fee and marks the proposal, and the vault's books do not move. Details on the fee are under
+<a href="/fees">Fees</a>.</p>
 
-<p>Because <code>deployedAssets</code> is one number, one settle per deployment is the rule:
-fund once, unwind, return, settle the funding proposal. Settling a zero-asset follow-up
-proposal instead is allowed while something is deployed and zeroes the whole balance for it.
-Settling with nothing deployed reverts <code>NothingToSettle</code>.</p>
+<p>One settle per funding is the rule: fund once, unwind, return, settle the funding proposal.
+<code>settle</code> on a zero-asset follow-up proposal is allowed as well, and would charge a fee
+on the whole of whatever <code>returned</code> it is given.</p>
 
-<div class="note warn">
+<div class="note">
   <span class="tag">For agents</span>
-  <p>Settle in the round after the return lands. Between the two, the share price is inflated
-  (see <a href="/vaults#accounting">Accounting</a>) and every exit in that window is priced
-  wrong.</p>
+  <p>Settle once the return has executed. Nothing is mispriced while it waits, but the fee is
+  not charged and the proposal stays open until it runs.</p>
 </div>
 """)
 
@@ -765,9 +775,12 @@ tier, with <code>minAmountOut</code> as the hard floor. Approves the router for 
 <code>amountIn</code> and clears the approval after. Emits
 <code>Rebalanced(token, amountIn, amountOut)</code>.</li>
 <li><strong><code>sell</code></strong> is the mirror image, leg back into base asset. Same event.</li>
-<li><strong><code>returnToVault</code></strong> transfers the strategy's entire base-asset
-balance to the vault and emits <code>Liquidated(amount)</code>, even when the amount is zero.
-Legs are never moved: sell them first or they stay put, unvalued.</li>
+<li><strong><code>returnToVault</code></strong> hands the strategy's entire base-asset balance
+back through the vault's <code>returnFromStrategy</code>, which closes the strategy's deployment
+in the same transaction, and emits <code>Liquidated(amount)</code>. With nothing to send it
+sends nothing, closes nothing, and still emits the event with zero. Legs are never moved: sell
+them first. Once a return has run the vault counts nothing that is still held here, until it
+comes back.</li>
 <li><strong><code>setWeights</code></strong> records target weights that must sum to exactly
 10,000 bps. They are a declaration, not a constraint — nothing in <code>buy</code> or
 <code>sell</code> reads them.</li>
@@ -856,8 +869,10 @@ reports the computed fee.</p>
 
 <p><code>returned</code> is whatever the agent passes. The contract does not compare it with the
 strategy's <code>Liquidated</code> event or the vault's balance; it only feeds it to the fee
-formula, to the vault's <code>StrategySettled(returned, pnl)</code> and to the governor's
-<code>ProposalSettled(id, returned, fee)</code>, which is what indexers read. Under-reporting lowers the fee,
+formula and to the governor's <code>ProposalSettled(id, returned, fee)</code>. The vault's own
+<code>StrategySettled(assets, pnl)</code> carries what the vault actually pulled in, when the
+strategy came back through <code>returnFromStrategy</code>; only for a venue that paid back with
+a plain transfer does it repeat the agent's number. Under-reporting lowers the fee,
 over-reporting raises it, and neither changes what depositors hold — the vault's assets are
 whatever came back through <code>returnToVault</code>. The runner reads
 <code>Liquidated</code> and reports exactly that.</p>
@@ -906,16 +921,20 @@ decides:</p>
 <li><strong>Paused?</strong> Do nothing.</li>
 <li><strong>A proposal is pending.</strong> Wait while its window is open. Once closed, execute
 it if <code>execute</code> simulates cleanly; otherwise abandon it (below) and move on.</li>
-<li><strong>Nothing deployed.</strong> Deployable = float − queued exits − the reserve
-(<code>RESERVE_BPS</code> of total assets). If that clears <code>MIN_TRADE</code>, propose a buy
-for it; otherwise idle.</li>
-<li><strong>Capital is out</strong> and the strategy holds the leg: sell it if an unwind is
+<li><strong>No cycle is open</strong>: no executed funding waits to be settled, and nothing is
+deployed. Deployable = float − queued exits − the reserve (<code>RESERVE_BPS</code> of total
+assets). If that clears <code>MIN_TRADE</code>, propose a buy for it; otherwise idle.</li>
+<li><strong>A return has executed this cycle:</strong> <code>settle</code> the funding proposal
+with what <code>Liquidated</code> reported, before anything else.</li>
+<li><strong>The leg is held and has not been sold this cycle:</strong> sell it if an unwind is
 due — <code>FORCE_UNWIND</code>, queued exits exceed the float, or <code>HOLD_SECONDS</code> have
 passed since the funding executed — otherwise hold.</li>
-<li>The leg is sold and base sits in the strategy: propose <code>returnToVault</code>.</li>
-<li>Everything is back: <code>settle</code> the funding proposal with the amount from
-<code>Liquidated</code>.</li>
+<li>Base sits in the strategy: propose <code>returnToVault</code>.</li>
 </ol>
+
+<p>Each step runs once per cycle, and what has already executed decides which is next; the
+strategy's balances only say whether there is anything to do it with. Anyone can send the
+strategy a speck of either token, and it must not cost the fund another day's veto window.</p>
 
 <p>The decision layer is a pure function with its own tests; nothing that touches an RPC
 decides anything.</p>
@@ -1593,9 +1612,14 @@ a strategy can be funded ahead of a queued exit.</li>
 <li><strong>Standard <code>withdraw</code> and <code>redeem</code> bypass the queue</strong>
 and revert when the balance is short.</li>
 <li><strong><code>returned</code> is self-reported.</strong> <code>settle</code> checks it
-against nothing; it drives the fee and the <code>StrategySettled</code> event, not the
-vault's balance.</li>
-<li><strong>Share price is inflated between a strategy's return and <code>settle</code>.</strong></li>
+against nothing; it drives the fee and the governor's event, not the vault's balance.</li>
+<li><strong>A venue that pays back with a plain transfer is counted twice until
+<code>settle</code></strong>, and <code>settle</code> closes its deployment on the agent's word,
+whenever the agent says. <code>PortfolioStrategyV2</code> returns through
+<code>returnFromStrategy</code> and is not affected.</li>
+<li><strong><code>returnToVault</code> ends the cycle on the vault's books.</strong> Whatever a
+strategy still holds after it is counted nowhere until it comes back, so a return before the
+legs are sold understates the fund for as long as they stay unsold.</li>
 <li><strong>Slashing is unreachable as deployed.</strong> <code>convict</code> is
 <code>registry.governor</code>-only and <code>RecurveGovernor</code> never calls it; the
 registry owner would have to repoint <code>governor</code> to a key that does.</li>
@@ -1644,7 +1668,6 @@ decode with the full ABI from the protocol repo to see the name.</p>
 <tr><td><code>GovernorAlreadySet</code></td><td>The governor is set once. Also raised for a zero address.</td></tr>
 <tr><td><code>CapCannotDecrease</code></td><td><code>raiseDepositCap</code> only goes up. The new cap must exceed the current one.</td></tr>
 <tr><td><code>FloatTooLow</code></td><td>The proposal moves more than the vault holds idle.</td></tr>
-<tr><td><code>NothingToSettle</code></td><td>No deployed capital to book. The cycle was already settled.</td></tr>
 <tr><td><code>RequestNotReady</code></td><td>The idle balance cannot cover the queued exit at today's price. It rises when the strategy returns assets, independently of <code>settle</code>.</td></tr>
 <tr><td><code>RequestAlreadyClaimed</code></td><td>Already withdrawn.</td></tr>
 <tr><td><code>NotRequestOwner</code></td><td>That queue position belongs to another address — the one that owned the shares, not the receiver.</td></tr>

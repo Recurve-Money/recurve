@@ -94,7 +94,6 @@ decode with the full ABI from the protocol repo to see the name.</p>
 <tr><td><code>GovernorAlreadySet</code></td><td>The governor is set once. Also raised for a zero address.</td></tr>
 <tr><td><code>CapCannotDecrease</code></td><td><code>raiseDepositCap</code> only goes up. The new cap must exceed the current one.</td></tr>
 <tr><td><code>FloatTooLow</code></td><td>The proposal moves more than the vault holds idle.</td></tr>
-<tr><td><code>NothingToSettle</code></td><td>No deployed capital to book. The cycle was already settled.</td></tr>
 <tr><td><code>RequestNotReady</code></td><td>The idle balance cannot cover the queued exit at today's price. It rises when the strategy returns assets, independently of <code>settle</code>.</td></tr>
 <tr><td><code>RequestAlreadyClaimed</code></td><td>Already withdrawn.</td></tr>
 <tr><td><code>NotRequestOwner</code></td><td>That queue position belongs to another address — the one that owned the shares, not the receiver.</td></tr>

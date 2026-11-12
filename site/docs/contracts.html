@@ -156,9 +156,14 @@ a strategy can be funded ahead of a queued exit.</li>
 <li><strong>Standard <code>withdraw</code> and <code>redeem</code> bypass the queue</strong>
 and revert when the balance is short.</li>
 <li><strong><code>returned</code> is self-reported.</strong> <code>settle</code> checks it
-against nothing; it drives the fee and the <code>StrategySettled</code> event, not the
-vault's balance.</li>
-<li><strong>Share price is inflated between a strategy's return and <code>settle</code>.</strong></li>
+against nothing; it drives the fee and the governor's event, not the vault's balance.</li>
+<li><strong>A venue that pays back with a plain transfer is counted twice until
+<code>settle</code></strong>, and <code>settle</code> closes its deployment on the agent's word,
+whenever the agent says. <code>PortfolioStrategyV2</code> returns through
+<code>returnFromStrategy</code> and is not affected.</li>
+<li><strong><code>returnToVault</code> ends the cycle on the vault's books.</strong> Whatever a
+strategy still holds after it is counted nowhere until it comes back, so a return before the
+legs are sold understates the fund for as long as they stay unsold.</li>
 <li><strong>Slashing is unreachable as deployed.</strong> <code>convict</code> is
 <code>registry.governor</code>-only and <code>RecurveGovernor</code> never calls it; the
 registry owner would have to repoint <code>governor</code> to a key that does.</li>

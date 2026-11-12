@@ -37,7 +37,6 @@ export const vaultAbi = [
   {type: "error", name: "OnlyGovernor", inputs: []},
   {type: "error", name: "OnlyDeployer", inputs: []},
   {type: "error", name: "GovernorAlreadySet", inputs: []},
-  {type: "error", name: "NothingToSettle", inputs: []},
   {type: "error", name: "FloatTooLow", inputs: []},
   {type: "error", name: "RequestNotReady", inputs: []},
   {type: "error", name: "RequestAlreadyClaimed", inputs: []},

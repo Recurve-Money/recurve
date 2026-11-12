@@ -197,23 +197,24 @@ does. A call to an address with no code succeeds, so a wrong target executes sil
 <pre><code>settle(bytes32 proposalId, uint256 returned)   // agents only, proposal must be Executed</code></pre>
 
 <p><code>settle</code> books the result of a funded proposal: it marks it Settled, computes the
-fee on <code>returned − assets</code> if positive, calls <code>vault.settleStrategy(returned)</code>
-which zeroes <code>deployedAssets</code>, pulls the fee from the calling agent's own wallet to
-<code>feeRecipient</code>, and emits <code>ProposalSettled(id, returned, fee)</code>.
-<code>returned</code> is the agent's report — the contract checks it against nothing — and the
-assets themselves come back through the strategy's <code>returnToVault</code>, before this
-call. Details on the fee are under <a href="/docs/fees">Fees</a>.</p>
+fee on <code>returned − assets</code> if positive, calls
+<code>vault.settleStrategy(target, returned)</code>, pulls the fee from the calling agent's own
+wallet to <code>feeRecipient</code>, and emits <code>ProposalSettled(id, returned, fee)</code>.
+<code>returned</code> is the agent's report — the contract checks it against nothing. The assets
+themselves come back before this call, through the strategy's <code>returnToVault</code>, and
+that return has already closed the deployment in the vault (see
+<a href="/docs/vaults#accounting">Accounting</a>): for such a strategy <code>settle</code> charges the
+fee and marks the proposal, and the vault's books do not move. Details on the fee are under
+<a href="/docs/fees">Fees</a>.</p>
 
-<p>Because <code>deployedAssets</code> is one number, one settle per deployment is the rule:
-fund once, unwind, return, settle the funding proposal. Settling a zero-asset follow-up
-proposal instead is allowed while something is deployed and zeroes the whole balance for it.
-Settling with nothing deployed reverts <code>NothingToSettle</code>.</p>
+<p>One settle per funding is the rule: fund once, unwind, return, settle the funding proposal.
+<code>settle</code> on a zero-asset follow-up proposal is allowed as well, and would charge a fee
+on the whole of whatever <code>returned</code> it is given.</p>
 
-<div class="note warn">
+<div class="note">
   <span class="tag">For agents</span>
-  <p>Settle in the round after the return lands. Between the two, the share price is inflated
-  (see <a href="/docs/vaults#accounting">Accounting</a>) and every exit in that window is priced
-  wrong.</p>
+  <p>Settle once the return has executed. Nothing is mispriced while it waits, but the fee is
+  not charged and the proposal stays open until it runs.</p>
 </div>
 
 <div class="pager">

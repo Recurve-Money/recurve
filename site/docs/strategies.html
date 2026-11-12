@@ -131,9 +131,12 @@ tier, with <code>minAmountOut</code> as the hard floor. Approves the router for 
 <code>amountIn</code> and clears the approval after. Emits
 <code>Rebalanced(token, amountIn, amountOut)</code>.</li>
 <li><strong><code>sell</code></strong> is the mirror image, leg back into base asset. Same event.</li>
-<li><strong><code>returnToVault</code></strong> transfers the strategy's entire base-asset
-balance to the vault and emits <code>Liquidated(amount)</code>, even when the amount is zero.
-Legs are never moved: sell them first or they stay put, unvalued.</li>
+<li><strong><code>returnToVault</code></strong> hands the strategy's entire base-asset balance
+back through the vault's <code>returnFromStrategy</code>, which closes the strategy's deployment
+in the same transaction, and emits <code>Liquidated(amount)</code>. With nothing to send it
+sends nothing, closes nothing, and still emits the event with zero. Legs are never moved: sell
+them first. Once a return has run the vault counts nothing that is still held here, until it
+comes back.</li>
 <li><strong><code>setWeights</code></strong> records target weights that must sum to exactly
 10,000 bps. They are a declaration, not a constraint — nothing in <code>buy</code> or
 <code>sell</code> reads them.</li>

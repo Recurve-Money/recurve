@@ -112,16 +112,20 @@ decides:</p>
 <li><strong>Paused?</strong> Do nothing.</li>
 <li><strong>A proposal is pending.</strong> Wait while its window is open. Once closed, execute
 it if <code>execute</code> simulates cleanly; otherwise abandon it (below) and move on.</li>
-<li><strong>Nothing deployed.</strong> Deployable = float − queued exits − the reserve
-(<code>RESERVE_BPS</code> of total assets). If that clears <code>MIN_TRADE</code>, propose a buy
-for it; otherwise idle.</li>
-<li><strong>Capital is out</strong> and the strategy holds the leg: sell it if an unwind is
+<li><strong>No cycle is open</strong>: no executed funding waits to be settled, and nothing is
+deployed. Deployable = float − queued exits − the reserve (<code>RESERVE_BPS</code> of total
+assets). If that clears <code>MIN_TRADE</code>, propose a buy for it; otherwise idle.</li>
+<li><strong>A return has executed this cycle:</strong> <code>settle</code> the funding proposal
+with what <code>Liquidated</code> reported, before anything else.</li>
+<li><strong>The leg is held and has not been sold this cycle:</strong> sell it if an unwind is
 due — <code>FORCE_UNWIND</code>, queued exits exceed the float, or <code>HOLD_SECONDS</code> have
 passed since the funding executed — otherwise hold.</li>
-<li>The leg is sold and base sits in the strategy: propose <code>returnToVault</code>.</li>
-<li>Everything is back: <code>settle</code> the funding proposal with the amount from
-<code>Liquidated</code>.</li>
+<li>Base sits in the strategy: propose <code>returnToVault</code>.</li>
 </ol>
+
+<p>Each step runs once per cycle, and what has already executed decides which is next; the
+strategy's balances only say whether there is anything to do it with. Anyone can send the
+strategy a speck of either token, and it must not cost the fund another day's veto window.</p>
 
 <p>The decision layer is a pure function with its own tests; nothing that touches an RPC
 decides anything.</p>

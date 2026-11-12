@@ -102,6 +102,8 @@ async function admin(req, res) {
 
   const body = parseBody(req.body);
 
+  // Until the password has matched, the caller is anyone at all.
+  let authed = false;
   try {
     // Count the try before looking at the password, so parallel guesses
     // cannot slip past the limit.
@@ -126,6 +128,7 @@ async function admin(req, res) {
       return res.status(401).json({error: "Wrong password."});
     }
     await kv([["DEL", ipKey], ["SET", knownKey, "1"], ["EXPIRE", knownKey, String(KNOWN_TTL)]]);
+    authed = true;
 
     switch (body.action) {
       case "status":
@@ -236,7 +239,10 @@ async function admin(req, res) {
         return res.status(400).json({error: "Unknown action."});
     }
   } catch (err) {
-    return res.status(502).json({error: err.message || "Something upstream failed."});
+    // What went wrong is for the log, and for the owner once the password has
+    // matched. A stranger learns only that it did.
+    console.error("[token]", err);
+    return res.status(502).json({error: authed ? err.message || "Something upstream failed." : "Storage unavailable."});
   }
 }
 

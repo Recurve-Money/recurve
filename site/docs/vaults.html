@@ -111,16 +111,18 @@ in the deploy settings).</p>
 float()       = idle balance</code></pre>
 
 <p><code>deployedAssets</code> is carried explicitly rather than inferred, because a position
-mid-strategy is neither in the balance nor visible to <code>balanceOf</code>. It is one number
-for the whole vault, not one per proposal: every <code>fundStrategy</code> adds to it and one
-<code>settleStrategy</code> zeroes it.</p>
+mid-strategy is neither in the balance nor visible to <code>balanceOf</code>. It is the sum of
+what is booked to each strategy target, <code>deployedTo(target)</code>: every
+<code>fundStrategy</code> adds to a target's part, and the target's return takes that part off
+again.</p>
 
 <table>
 <thead><tr><th>Function</th><th>Returns</th></tr></thead>
 <tbody>
 <tr><td><code>totalAssets()</code></td><td>Everything owed to depositors</td></tr>
 <tr><td><code>float()</code></td><td>The idle balance. Queued exits reserve nothing from it (the <code>pendingWithdrawalAssets</code> field it subtracts is never written)</td></tr>
-<tr><td><code>deployedAssets()</code></td><td>Committed to a live strategy</td></tr>
+<tr><td><code>deployedAssets()</code></td><td>Committed to live strategies</td></tr>
+<tr><td><code>deployedTo(target)</code></td><td>The part of it booked to one target</td></tr>
 <tr><td><code>depositCap()</code></td><td>Ceiling on <code>totalAssets()</code></td></tr>
 <tr><td><code>queueLength()</code></td><td>Redemption requests ever created, claimed ones included</td></tr>
 <tr><td><code>withdrawalQueue(i)</code></td><td><code>(shares, requestedAt, receiver, claimed)</code></td></tr>
@@ -129,12 +131,13 @@ for the whole vault, not one per proposal: every <code>fundStrategy</code> adds 
 </table>
 
 <div class="note warn">
-  <span class="tag">Between return and settle</span>
-  <p>When a strategy sends assets back to the vault, the balance rises while
-  <code>deployedAssets</code> is still counted, so <code>totalAssets()</code> and the share
-  price are inflated until <code>settle</code> runs. Claims and instant redemptions in that
-  window are priced on the inflated number. The <a href="/docs/runner">runner</a> settles in the
-  round after the return executes to keep the window short.</p>
+  <span class="tag">A return closes the deployment</span>
+  <p>A strategy hands capital back through <code>returnFromStrategy</code>, which takes the
+  assets in and the deployment off the books in one call. <code>totalAssets()</code> and the
+  share price move by exactly the gain or the loss, once, and no exit is ever priced with the
+  returned assets counted twice. A venue that pays back with a plain transfer does not get
+  this: its deployment stays booked until <code>settle</code>, and until then the share price
+  is too high by what it sent back.</p>
 </div>
 
 <h2 id="movement">How capital moves</h2>
@@ -142,10 +145,16 @@ for the whole vault, not one per proposal: every <code>fundStrategy</code> adds 
 <p><code>fundStrategy(target, assets)</code> is the governor's way out: it transfers assets to
 the target, adds them to <code>deployedAssets</code>, and reverts with <code>FloatTooLow</code>
 if the request exceeds the idle balance. Only the governor can call it, and the governor only
-calls it from an executed proposal. <code>settleStrategy(returned)</code> is the way back on
-paper: it zeroes <code>deployedAssets</code> and emits <code>StrategySettled(returned, pnl)</code>.
-It does not move tokens and does not check that <code>returned</code> arrived — the strategy
-transfers assets back on its own, and the governor reports the number.</p>
+calls it from an executed proposal.</p>
+
+<p><code>returnFromStrategy(assets)</code> is the way back. The strategy approves the vault and
+calls it; the vault pulls the assets, clears whatever was booked to the caller and emits
+<code>StrategySettled(assets, pnl)</code> with the amount it actually received. Anyone may call
+it: a caller with nothing booked to it only gives the vault assets, and the one deployment a
+caller can close is its own. <code>settleStrategy(target, returned)</code> is governor-only and
+closes what is still booked to a target that paid back with a plain transfer, taking
+<code>returned</code> as the governor reports it; after a <code>returnFromStrategy</code> it has
+nothing to close and does nothing.</p>
 
 <p>Depositors have a second exit the queue does not cover. The standard ERC-4626
 <code>withdraw</code> and <code>redeem</code> are not overridden: they pay from the idle balance

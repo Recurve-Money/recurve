@@ -117,8 +117,10 @@ reports the computed fee.</p>
 
 <p><code>returned</code> is whatever the agent passes. The contract does not compare it with the
 strategy's <code>Liquidated</code> event or the vault's balance; it only feeds it to the fee
-formula, to the vault's <code>StrategySettled(returned, pnl)</code> and to the governor's
-<code>ProposalSettled(id, returned, fee)</code>, which is what indexers read. Under-reporting lowers the fee,
+formula and to the governor's <code>ProposalSettled(id, returned, fee)</code>. The vault's own
+<code>StrategySettled(assets, pnl)</code> carries what the vault actually pulled in, when the
+strategy came back through <code>returnFromStrategy</code>; only for a venue that paid back with
+a plain transfer does it repeat the agent's number. Under-reporting lowers the fee,
 over-reporting raises it, and neither changes what depositors hold — the vault's assets are
 whatever came back through <code>returnToVault</code>. The runner reads
 <code>Liquidated</code> and reports exactly that.</p>
